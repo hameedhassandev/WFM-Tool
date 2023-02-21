@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WFM_API.Models;
 
@@ -11,9 +12,10 @@ using WFM_API.Models;
 namespace WFM_API.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230220000004_seedRoles")]
+    partial class seedRoles
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -155,30 +157,6 @@ namespace WFM_API.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("WFM_API.Models.Break", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("EmployeeAppointmentId")
-                        .HasColumnType("int");
-
-                    b.Property<TimeSpan>("From")
-                        .HasColumnType("time");
-
-                    b.Property<TimeSpan>("To")
-                        .HasColumnType("time");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("EmployeeAppointmentId");
-
-                    b.ToTable("Break");
-                });
-
             modelBuilder.Entity("WFM_API.Models.Department", b =>
                 {
                     b.Property<int>("Id")
@@ -194,132 +172,6 @@ namespace WFM_API.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Department");
-                });
-
-            modelBuilder.Entity("WFM_API.Models.EmployeeAppointment", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("Day")
-                        .HasColumnType("int");
-
-                    b.Property<string>("EmployeePID")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("TypeOfDayId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("EmployeePID");
-
-                    b.HasIndex("TypeOfDayId");
-
-                    b.ToTable("EmployeeAppointments");
-                });
-
-            modelBuilder.Entity("WFM_API.Models.Exception", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("ApprovedByPID")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CreatorPID")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("ExceptionStatusId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ExceptionTypeId")
-                        .HasColumnType("int");
-
-                    b.Property<TimeSpan>("From")
-                        .HasColumnType("time");
-
-                    b.Property<TimeSpan>("To")
-                        .HasColumnType("time");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CreatorPID");
-
-                    b.HasIndex("ExceptionStatusId");
-
-                    b.HasIndex("ExceptionTypeId");
-
-                    b.ToTable("Exceptions");
-                });
-
-            modelBuilder.Entity("WFM_API.Models.ExceptionComment", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Comment")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CreatorPID")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("ExceptionId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ExceptionId");
-
-                    b.ToTable("ExceptionComment");
-                });
-
-            modelBuilder.Entity("WFM_API.Models.ExceptionStatus", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Status")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ExceptionStatus");
-                });
-
-            modelBuilder.Entity("WFM_API.Models.ExceptionType", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("ExceptionName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ExceptionType");
                 });
 
             modelBuilder.Entity("WFM_API.Models.Identity.AppUser", b =>
@@ -362,6 +214,12 @@ namespace WFM_API.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
+                    b.Property<int>("PID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PID"), 1L, 1);
+
                     b.Property<string>("PasswordHash")
                         .HasColumnType("nvarchar(max)");
 
@@ -394,22 +252,6 @@ namespace WFM_API.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
-                });
-
-            modelBuilder.Entity("WFM_API.Models.TypeOfDay", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("TypeName")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("TypeOfDay");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -463,74 +305,6 @@ namespace WFM_API.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("WFM_API.Models.Break", b =>
-                {
-                    b.HasOne("WFM_API.Models.EmployeeAppointment", "EmployeeAppointment")
-                        .WithMany("Breaks")
-                        .HasForeignKey("EmployeeAppointmentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("EmployeeAppointment");
-                });
-
-            modelBuilder.Entity("WFM_API.Models.EmployeeAppointment", b =>
-                {
-                    b.HasOne("WFM_API.Models.Identity.AppUser", "User")
-                        .WithMany()
-                        .HasForeignKey("EmployeePID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("WFM_API.Models.TypeOfDay", "TypeOfDay")
-                        .WithMany()
-                        .HasForeignKey("TypeOfDayId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("TypeOfDay");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("WFM_API.Models.Exception", b =>
-                {
-                    b.HasOne("WFM_API.Models.Identity.AppUser", "User")
-                        .WithMany()
-                        .HasForeignKey("CreatorPID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("WFM_API.Models.ExceptionStatus", "ExceptionStatus")
-                        .WithMany()
-                        .HasForeignKey("ExceptionStatusId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("WFM_API.Models.ExceptionType", "ExceptionType")
-                        .WithMany()
-                        .HasForeignKey("ExceptionTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("ExceptionStatus");
-
-                    b.Navigation("ExceptionType");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("WFM_API.Models.ExceptionComment", b =>
-                {
-                    b.HasOne("WFM_API.Models.Exception", "Exception")
-                        .WithMany("ExceptionComments")
-                        .HasForeignKey("ExceptionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Exception");
-                });
-
             modelBuilder.Entity("WFM_API.Models.Identity.AppUser", b =>
                 {
                     b.HasOne("WFM_API.Models.Department", "Department")
@@ -540,16 +314,6 @@ namespace WFM_API.Migrations
                         .IsRequired();
 
                     b.Navigation("Department");
-                });
-
-            modelBuilder.Entity("WFM_API.Models.EmployeeAppointment", b =>
-                {
-                    b.Navigation("Breaks");
-                });
-
-            modelBuilder.Entity("WFM_API.Models.Exception", b =>
-                {
-                    b.Navigation("ExceptionComments");
                 });
 #pragma warning restore 612, 618
         }

@@ -28,14 +28,14 @@ namespace WFM_API.Services
            return await _context.Set<T>().SingleOrDefaultAsync(criteria);
         }
 
-        public async Task<T> FindAsQuery(Expression<Func<T, bool>> criteria,string[] includes = null)
+        public async Task<IEnumerable<T>> FindAsQuery(Expression<Func<T, bool>> criteria,string[] includes = null)
         {
             IQueryable<T> query = _context.Set<T>();  
             if(includes != null)
                 foreach(var include in includes)
                     query = query.Include(include);
 
-            return await query.SingleOrDefaultAsync(criteria);
+            return await query.Where(criteria).ToListAsync();
         }
 
     }

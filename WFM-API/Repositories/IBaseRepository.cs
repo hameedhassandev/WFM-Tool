@@ -7,7 +7,7 @@ namespace WFM_API.Repositories
         Task<T> GetById(int id);
         Task<IEnumerable<T>> GetAll();
         Task<T> Find(Expression<Func<T, bool>> criteria);
-        Task<T> FindAsQuery(Expression<Func<T, bool>> criteria, string[] includes = null);
+        Task<IEnumerable<T>> FindAsQuery(Expression<Func<T, bool>> criteria, string[] includes = null);
 
     }
 }

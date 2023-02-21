@@ -22,10 +22,11 @@ namespace WFM_API.Controllers
         }
 
         // GET api/<DepartmentController>/GetByName
+        
         [HttpGet("GetByName")]
         public async Task<IActionResult> GetByName()
         {
-            return Ok(await _departmentRepository.FindAsQuery(n=>n.Name == "Data Entry"));
+            return Ok(await _departmentRepository.FindAsQuery(n=>n.Name == "Data Entry" ));
         }
 
         // GET api/<DepartmentController>/5
