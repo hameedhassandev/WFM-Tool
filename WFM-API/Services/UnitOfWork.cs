@@ -7,13 +7,16 @@ namespace WFM_API.Services
     public class UnitOfWork : IUnitOfWork
     {
         private readonly AppDbContext _context;
+        public IBaseRepository<Department> Departments { get; private set; }
+        public IExceptionRepository Exceptions { get; private set; }
+
 
         public UnitOfWork(AppDbContext context)
         {
             _context = context;
             Departments = new BaseRepository<Department>(_context);
+            Exceptions = new ExceptionRepository(_context);
         }
-        public IBaseRepository<Department> Departments { get; private set; }
 
         public int Complete()
         {

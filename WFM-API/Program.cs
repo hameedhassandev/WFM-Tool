@@ -4,6 +4,7 @@ using WFM_API.Models;
 using WFM_API.Models.Identity;
 using WFM_API.Repositories;
 using WFM_API.Services;
+using WFM_API.UnitOfWork;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,7 +22,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 
-builder.Services.AddTransient(typeof(IBaseRepository<>), typeof(BaseRepository<>));
+//builder.Services.AddTransient(typeof(IBaseRepository<>), typeof(BaseRepository<>));
+builder.Services.AddTransient<IUnitOfWork,UnitOfWork>();
 
 
 var app = builder.Build();

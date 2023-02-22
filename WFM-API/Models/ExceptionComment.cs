@@ -18,7 +18,7 @@ namespace WFM_API.Models
 
 
         [Required]
-        public int ExceptionId { get; set; }
-        public Exception? Exception { get; set; }
+        public int EmpExceptionId { get; set; }
+        public EmpException? Exception { get; set; }
     }
 }

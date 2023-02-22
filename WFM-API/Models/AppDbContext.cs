@@ -12,7 +12,7 @@ namespace WFM_API.Models
         }
 
         public DbSet<EmployeeAppointment> EmployeeAppointments { get; set; }
-        public DbSet<Exception> Exceptions { get; set; }
+        public DbSet<EmpException> Exceptions { get; set; }
 
 
 

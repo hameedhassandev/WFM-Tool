@@ -5,6 +5,10 @@ namespace WFM_API.UnitOfWork
 {
     public interface IUnitOfWork : IDisposable
     {
-        IBaseRepository<Department> Departments { get; }  
+        IBaseRepository<Department> Departments { get; }
+
+        IExceptionRepository Exceptions { get; }
+
+        int Complete();
     }
 }

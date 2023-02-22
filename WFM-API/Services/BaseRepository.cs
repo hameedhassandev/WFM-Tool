@@ -23,6 +23,11 @@ namespace WFM_API.Services
         {
             return await _context.Set<T>().FindAsync(id);
         }
+        public async Task<T> Add(T entity)
+        {
+            await _context.Set<T>().AddAsync(entity);
+            return entity;
+        }
         public async Task<T> Find(Expression<Func<T, bool>> criteria)
         {
            return await _context.Set<T>().SingleOrDefaultAsync(criteria);

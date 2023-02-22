@@ -4,10 +4,13 @@ using WFM_API.Models.Identity;
 
 namespace WFM_API.Models
 {
-    public class Exception
+    public class EmpException
     {
         [Required]
         public int Id { get; set; }
+
+    /*    [Required]
+        public Days Day { get; set; }*/
 
         [Required]
         public int ExceptionTypeId { get; set; }
