@@ -7,6 +7,6 @@ namespace WFM_API.Models
         [Required]
         public int Id { get; set; }
         [Required]
-        public int TypeName { get; set; }
+        public string TypeName { get; set; }
     }
 }

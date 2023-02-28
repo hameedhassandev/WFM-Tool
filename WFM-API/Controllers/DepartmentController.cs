@@ -29,7 +29,8 @@ namespace WFM_API.Controllers
         public async Task<IActionResult> GetByName()
         {
             // return Ok(await _departmentRepository.FindAsQuery(n=>n.Name == "Data Entry" ));
-            return Ok(await _unitOfWork.Departments.FindAsQuery(n => n.Name == "Data Entry"));
+            // return Ok(await _unitOfWork.Departments.FindAsQuery(n => n.Name == "Data Entry"));
+             return Ok(await _unitOfWork.Departments.GetAll());
         }
 
         // GET api/<DepartmentController>/5
@@ -60,9 +61,9 @@ namespace WFM_API.Controllers
 
 
         [HttpPost("AddException")]
-        public async Task<IActionResult> AddException()
+        public async Task<IActionResult> AddException([FromForm] DateTime from)
         {
-            var exception = new EmpException
+            EmpException exception = new()
             {
                 ExceptionTypeId = 2,
                 CreatorPID = "c445dd9d-78a1-4dd7-9813-cb004f57b969",

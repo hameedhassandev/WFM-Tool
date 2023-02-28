@@ -9,9 +9,6 @@ namespace WFM_API.Models
         [Required]
         public int Id { get; set; }
 
-    /*    [Required]
-        public Days Day { get; set; }*/
-
         [Required]
         public int ExceptionTypeId { get; set; }
         public ExceptionType? ExceptionType { get; set; }
@@ -24,6 +21,9 @@ namespace WFM_API.Models
 
         [ForeignKey("CreatorPID")]
         public AppUser? User { get; set; }
+
+        [Required]
+        public DateTime ExceptionDate { get; set; }
 
         [Required]
         public TimeSpan From { get; set; }

@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace WFM_API.DTOS
+namespace WFM_API.DTOS.CreateDtos
 {
-    public class EmployeeDto
+    public class CreateEmployeeDto
     {
         [Required]
         public string FullName { get; set; }

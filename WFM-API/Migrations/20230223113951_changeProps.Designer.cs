@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WFM_API.Models;
 
@@ -11,9 +12,10 @@ using WFM_API.Models;
 namespace WFM_API.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230223113951_changeProps")]
+    partial class changeProps
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -155,24 +157,7 @@ namespace WFM_API.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("WFM_API.Models.Department", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Department");
-                });
-
-            modelBuilder.Entity("WFM_API.Models.EmpBreak", b =>
+            modelBuilder.Entity("WFM_API.Models.Break", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -193,7 +178,24 @@ namespace WFM_API.Migrations
 
                     b.HasIndex("EmployeeAppointmentId");
 
-                    b.ToTable("EmpBreak");
+                    b.ToTable("Break");
+                });
+
+            modelBuilder.Entity("WFM_API.Models.Department", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Department");
                 });
 
             modelBuilder.Entity("WFM_API.Models.EmpException", b =>
@@ -246,18 +248,15 @@ namespace WFM_API.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<DateTime>("AppointMentDate")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("EmployeePID")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<TimeSpan>("From")
-                        .HasColumnType("time");
+                    b.Property<DateTime>("From")
+                        .HasColumnType("datetime2");
 
-                    b.Property<TimeSpan>("To")
-                        .HasColumnType("time");
+                    b.Property<DateTime>("To")
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("TypeOfDayId")
                         .HasColumnType("int");
@@ -413,9 +412,8 @@ namespace WFM_API.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("TypeName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("TypeName")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -473,7 +471,7 @@ namespace WFM_API.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("WFM_API.Models.EmpBreak", b =>
+            modelBuilder.Entity("WFM_API.Models.Break", b =>
                 {
                     b.HasOne("WFM_API.Models.EmployeeAppointment", "EmployeeAppointment")
                         .WithMany("Breaks")

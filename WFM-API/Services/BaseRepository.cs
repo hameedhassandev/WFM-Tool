@@ -23,6 +23,11 @@ namespace WFM_API.Services
         {
             return await _context.Set<T>().FindAsync(id);
         }
+
+        public async Task<T> GetById(string id)
+        {
+            return await _context.Set<T>().FindAsync(id);
+        }
         public async Task<T> Add(T entity)
         {
             await _context.Set<T>().AddAsync(entity);
@@ -35,12 +40,15 @@ namespace WFM_API.Services
 
         public async Task<IEnumerable<T>> FindAsQuery(Expression<Func<T, bool>> criteria,string[] includes = null)
         {
-            IQueryable<T> query = _context.Set<T>();  
-            if(includes != null)
-                foreach(var include in includes)
+            IQueryable<T> query = _context.Set<T>();
+            if (includes != null)
+                foreach (var include in includes)
                     query = query.Include(include);
 
-            return await query.Where(criteria).ToListAsync();
+        
+            var result = await query.Where(criteria).ToListAsync();
+            return result;
+          
         }
 
     }

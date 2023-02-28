@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Any;
+using Microsoft.OpenApi.Models;
 using WFM_API.Models;
 using WFM_API.Models.Identity;
 using WFM_API.Repositories;
@@ -19,7 +21,21 @@ builder.Services.AddIdentity<AppUser, IdentityRole>()
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(options=>
+{
+    options.MapType<TimeSpan>(() => new OpenApiSchema
+    {
+        Type = "string",
+        Example = new OpenApiString("00:00:00")
+    });
+});
+
+//add cors service to test api to test it 
+builder.Services.AddCors(policyBuilder =>
+    policyBuilder.AddDefaultPolicy(policy =>
+        policy.WithOrigins("*").AllowAnyMethod().AllowAnyHeader())
+);
+
 
 
 //builder.Services.AddTransient(typeof(IBaseRepository<>), typeof(BaseRepository<>));
@@ -40,5 +56,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseCors();
 
 app.Run();

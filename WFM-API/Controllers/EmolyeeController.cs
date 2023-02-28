@@ -1,10 +1,11 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using WFM_API.DTOS;
+using WFM_API.DTOS.CreateDtos;
 using WFM_API.Helpers;
 using WFM_API.Models.Identity;
 using WFM_API.Repositories;
+using WFM_API.UnitOfWork;
 
 namespace WFM_API.Controllers
 {
@@ -13,17 +14,27 @@ namespace WFM_API.Controllers
     public class EmolyeeController : ControllerBase
     {
         private readonly UserManager<AppUser> _userMnager;
-        private readonly IBaseRepository<AppUser> _userRepo;
+        //private readonly IBaseRepository<AppUser> _userRepo;
 
-        public EmolyeeController(UserManager<AppUser> userMnager, IBaseRepository<AppUser> userRepo)
+        private readonly IUnitOfWork _unitOfWork;
+
+        public EmolyeeController(IUnitOfWork unitOfWork, UserManager<AppUser> userMnager)
+        {
+            _unitOfWork = unitOfWork;
+            _userMnager = userMnager;
+        }
+       /* public EmolyeeController(UserManager<AppUser> userMnager, IBaseRepository<AppUser> userRepo)
         {
                 _userMnager = userMnager;
                  _userRepo = userRepo;
-        }
+        }*/
     
-        [HttpPost]
-        public async Task<IActionResult> AddEmployee ([FromForm] EmployeeDto dto)
+        [HttpPost("AddEmployee")]
+        public async Task<IActionResult> AddEmployee ([FromForm] CreateEmployeeDto dto)
         {
+            var emp = await _userMnager.FindByNameAsync(dto.UserName);
+            if (emp != null) return BadRequest($"Username {dto.UserName} is exist!");
+
             var employee = new AppUser
             {
                 UserName = dto.UserName,
@@ -49,7 +60,7 @@ namespace WFM_API.Controllers
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            var employees = await _userRepo.FindAsQuery(n => n.DepartmentId == 2, new[] { "Department" });
+            var employees = await _unitOfWork.Employees.FindAsQuery(n => n.DepartmentId == 2, new[] { "Department" });
             return Ok(employees);
         }
     }
