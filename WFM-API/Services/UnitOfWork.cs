@@ -10,8 +10,8 @@ namespace WFM_API.Services
         private readonly AppDbContext _context;
         public IBaseRepository<Department> Departments { get; private set; }
         public IExceptionRepository Exceptions { get; private set; }
+        public IEmployeeAppointment EmployeeAppointments { get; private set; }
         public IBaseRepository<AppUser> Employees { get; private set; }
-        public IBaseRepository<EmployeeAppointment> EmployeeAppointments { get; private set; }
         public IBaseRepository<EmpBreak> EmployeeBreaks { get; private set; }
 
 
@@ -23,7 +23,7 @@ namespace WFM_API.Services
             Departments = new BaseRepository<Department>(_context);
             Exceptions = new ExceptionRepository(_context);
             Employees = new BaseRepository<AppUser>(_context);
-            EmployeeAppointments = new BaseRepository<EmployeeAppointment>(_context);
+            EmployeeAppointments = new EmployeeAppoinRepository(_context);
             EmployeeBreaks = new BaseRepository<EmpBreak>(_context);
         }
 

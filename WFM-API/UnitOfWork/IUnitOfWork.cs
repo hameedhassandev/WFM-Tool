@@ -8,7 +8,7 @@ namespace WFM_API.UnitOfWork
     {
         IBaseRepository<Department> Departments { get; }
         IBaseRepository<AppUser> Employees { get; }
-        IBaseRepository<EmployeeAppointment> EmployeeAppointments { get; }
+        IEmployeeAppointment EmployeeAppointments { get; }
 
         IExceptionRepository Exceptions { get; }
         IBaseRepository<EmpBreak> EmployeeBreaks { get; }

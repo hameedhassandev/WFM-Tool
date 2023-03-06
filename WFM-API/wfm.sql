@@ -36,8 +36,13 @@ SELECT * FROM dbo.Exceptions
 SELECT * FROM dbo.EmployeeAppointments
 SELECT * FROM dbo.EmpBreak
 
+DELETE FROM dbo.EmployeeAppointments WHERE Id=10
 
 SELECT * FROM dbo.TypeOfDay
 
 INSERT INTO dbo.TypeOfDay(TypeName)
 VALUES ('Annual')
+
+INSERT INTO dbo.TypeOfDay(TypeName)
+VALUES ('Work'),
+('Day Off')

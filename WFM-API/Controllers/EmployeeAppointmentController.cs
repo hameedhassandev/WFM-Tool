@@ -46,16 +46,18 @@ namespace WFM_API.Controllers
         [HttpPost("AddAppointment")]
         public async Task<IActionResult> AddAppointment([FromForm] CreateAppointmentDto dto)
         {
-            
+            var dateIsExist = await _unitOfWork.EmployeeAppointments.dateIsExist(dto.EmployeePID, dto.AppointMentDate);
+            if (dateIsExist) return BadRequest($"Date {dto.AppointMentDate} is alerdy exist");
+
             EmployeeAppointment appointment = new() { 
                 EmployeePID = dto.EmployeePID,
                 TypeOfDayId = dto.TypeOfDayId,
                 AppointMentDate = dto.AppointMentDate,
                 From = dto.From,
                 To = dto.To
-                
+                  
             };
-
+             
             var results = await _unitOfWork.EmployeeAppointments.Add(appointment);
             _unitOfWork.Complete();
 
@@ -68,6 +70,13 @@ namespace WFM_API.Controllers
 
 
             return Ok(results);
+        }
+
+        [HttpGet("GetEmplAppointment")]
+        public async Task<IActionResult> GetEmplAppointment(string EmplAppointmentId)
+        {
+            var emAppointment = await _unitOfWork.EmployeeAppointments.Find(e => e.EmployeePID == EmplAppointmentId);
+            return Ok(emAppointment);
         }
     }
 }

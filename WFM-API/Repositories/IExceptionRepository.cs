@@ -4,6 +4,6 @@ namespace WFM_API.Repositories
 {
     public interface IExceptionRepository : IBaseRepository<EmpException>
     {
-        IEnumerable<EmpException> GetAllException();
+        Task<bool> isExceptionDuringDay(DateTime exceptionDate,string empPID, TimeSpan from, TimeSpan to);
     }
 }

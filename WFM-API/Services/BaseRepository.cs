@@ -24,10 +24,7 @@ namespace WFM_API.Services
             return await _context.Set<T>().FindAsync(id);
         }
 
-        public async Task<T> GetById(string id)
-        {
-            return await _context.Set<T>().FindAsync(id);
-        }
+      
         public async Task<T> Add(T entity)
         {
             await _context.Set<T>().AddAsync(entity);

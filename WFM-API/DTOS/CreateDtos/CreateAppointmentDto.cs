@@ -24,8 +24,8 @@ namespace WFM_API.DTOS.CreateDtos
         [Required]
         public TimeSpan To { get; set; }
 
-      //  public List<EmpBreakDto>? Breaks { get; set; }
-        public EmpBreakDto? Breaks { get; set; }
+      //public List<EmpBreakDto>? Breaks { get; set; }
+      public EmpBreakDto? Breaks { get; set; }
 
     }
 }
