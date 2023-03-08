@@ -212,6 +212,9 @@ namespace WFM_API.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<int>("EmployeeAppointmentId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("ExceptionDate")
                         .HasColumnType("datetime2");
 
@@ -230,6 +233,8 @@ namespace WFM_API.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CreatorPID");
+
+                    b.HasIndex("EmployeeAppointmentId");
 
                     b.HasIndex("ExceptionStatusId");
 
@@ -492,6 +497,12 @@ namespace WFM_API.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("WFM_API.Models.EmployeeAppointment", "EmployeeAppointment")
+                        .WithMany("Exceptions")
+                        .HasForeignKey("EmployeeAppointmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("WFM_API.Models.ExceptionStatus", "ExceptionStatus")
                         .WithMany()
                         .HasForeignKey("ExceptionStatusId")
@@ -503,6 +514,8 @@ namespace WFM_API.Migrations
                         .HasForeignKey("ExceptionTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("EmployeeAppointment");
 
                     b.Navigation("ExceptionStatus");
 
@@ -560,6 +573,8 @@ namespace WFM_API.Migrations
             modelBuilder.Entity("WFM_API.Models.EmployeeAppointment", b =>
                 {
                     b.Navigation("Breaks");
+
+                    b.Navigation("Exceptions");
                 });
 #pragma warning restore 612, 618
         }

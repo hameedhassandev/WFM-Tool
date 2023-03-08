@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using WFM_API.Models.Identity;
+using System.Text.Json.Serialization;
 
 namespace WFM_API.Models
 {
@@ -33,6 +34,12 @@ namespace WFM_API.Models
         [Required]
         public int ExceptionStatusId { get; set; }
         public ExceptionStatus? ExceptionStatus { get; set; }
+
+        public int EmployeeAppointmentId { get; set; }
+
+        [JsonIgnore]
+        public EmployeeAppointment? EmployeeAppointment { get; set; }
+
         public ICollection<ExceptionComment>? ExceptionComments { get; set; }
 
 

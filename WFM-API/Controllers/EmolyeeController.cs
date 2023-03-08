@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using WFM_API.DTOS;
 using WFM_API.DTOS.CreateDtos;
 using WFM_API.Helpers;
 using WFM_API.Models.Identity;
@@ -17,11 +19,14 @@ namespace WFM_API.Controllers
         //private readonly IBaseRepository<AppUser> _userRepo;
 
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IMapper _mapper;
 
-        public EmolyeeController(IUnitOfWork unitOfWork, UserManager<AppUser> userMnager)
+
+        public EmolyeeController(IUnitOfWork unitOfWork,IMapper mapper, UserManager<AppUser> userMnager)
         {
             _unitOfWork = unitOfWork;
             _userMnager = userMnager;
+            _mapper = mapper;
         }
        /* public EmolyeeController(UserManager<AppUser> userMnager, IBaseRepository<AppUser> userRepo)
         {
@@ -57,11 +62,13 @@ namespace WFM_API.Controllers
         }
 
 
-        [HttpGet]
-        public async Task<IActionResult> Get()
+        [HttpGet("GetAllTeamLeaders")]
+        public async Task<IActionResult> GetAllTeamLeaders()
         {
-            var employees = await _unitOfWork.Employees.FindAsQuery(n => n.DepartmentId == 2, new[] { "Department" });
-            return Ok(employees);
+            var usersWithPermission = await _userMnager.GetUsersInRoleAsync(Roles.TeamLeaderRole);
+            var results = _mapper.Map<IEnumerable<EmployeeDto>>(usersWithPermission);
+
+            return Ok(results);
         }
     }
 }

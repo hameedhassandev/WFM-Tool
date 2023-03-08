@@ -7,6 +7,7 @@ namespace WFM_API.UnitOfWork
     public interface IUnitOfWork : IDisposable
     {
         IBaseRepository<Department> Departments { get; }
+        IBaseRepository<ExceptionComment> ExceptionComments { get; }
         IBaseRepository<AppUser> Employees { get; }
         IEmployeeAppointment EmployeeAppointments { get; }
 

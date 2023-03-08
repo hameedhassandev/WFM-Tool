@@ -13,6 +13,7 @@ namespace WFM_API.Services
         public IEmployeeAppointment EmployeeAppointments { get; private set; }
         public IBaseRepository<AppUser> Employees { get; private set; }
         public IBaseRepository<EmpBreak> EmployeeBreaks { get; private set; }
+        public IBaseRepository<ExceptionComment> ExceptionComments { get; private set; }
 
 
 
@@ -25,6 +26,7 @@ namespace WFM_API.Services
             Employees = new BaseRepository<AppUser>(_context);
             EmployeeAppointments = new EmployeeAppoinRepository(_context);
             EmployeeBreaks = new BaseRepository<EmpBreak>(_context);
+            ExceptionComments = new BaseRepository<ExceptionComment>(_context);
         }
 
         public int Complete()

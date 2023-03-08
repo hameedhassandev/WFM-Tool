@@ -31,6 +31,8 @@ namespace WFM_API.Models
         public TypeOfDay? TypeOfDay { get; set; }
 
         public ICollection<EmpBreak>? Breaks { get; set; }
+        public ICollection<EmpException>? Exceptions { get; set; }
+
 
 
 

@@ -30,6 +30,17 @@ namespace WFM_API.Services
             await _context.Set<T>().AddAsync(entity);
             return entity;
         }
+        public T Update(T entity)
+        {
+            _context.Set<T>().Update(entity);
+            return entity;
+        }
+
+        public void Delete(T entity)
+        {
+            _context.Set<T>().Remove(entity);
+        }
+
         public async Task<T> Find(Expression<Func<T, bool>> criteria)
         {
            return await _context.Set<T>().SingleOrDefaultAsync(criteria);
