@@ -27,13 +27,11 @@ namespace WFM_API.Controllers
         [HttpPost("CreateException")]
         public async Task<IActionResult> CreateException([FromForm]CreateExceptionDto dto)
         {
-            string empId = "6403e590-a212-4b2a-9ada-b8f03b90b25f";
-            DateTime dateOfExc = new DateTime(2023, 3, 6, 0, 0, 0);
 
-            var appointmentId = await _unitOfWork.Exceptions.getAppointmentId(empId, dateOfExc);
+            var appointmentId = await _unitOfWork.Exceptions.getAppointmentId(dto.CreatorPID, dto.ExceptionDate);
             if (appointmentId is -1) return BadRequest("Invalid Appointment");
-                var excIsValid = await _unitOfWork.Exceptions.isExceptionDuringDay(dateOfExc, empId, dto.From, dto.To);
-            if (!excIsValid) return BadRequest("Invalid Exception Date");
+                var excIsValid = await _unitOfWork.Exceptions.isExceptionDuringDay(dto.ExceptionDate, dto.CreatorPID, dto.From, dto.To);
+            if (!excIsValid) return BadRequest("Invalid Exception Time");
 
 
             EmpException empExc = new()
@@ -178,6 +176,14 @@ namespace WFM_API.Controllers
             var results = _mapper.Map<IEnumerable<EmployeeExceptionDto>>(allExceptions);
 
             return Ok(results);
+        }
+
+        [HttpGet("GetExceptonTypes")]
+        public async Task<IActionResult> GetExceptonTypes()
+        {
+            var allTypes = await _unitOfWork.ExceptionTypes.GetAll();
+            if (allTypes == null) return NotFound();
+            return Ok(allTypes);
         }
 
     }

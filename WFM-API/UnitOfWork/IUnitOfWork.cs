@@ -13,6 +13,7 @@ namespace WFM_API.UnitOfWork
 
         IExceptionRepository Exceptions { get; }
         IBaseRepository<EmpBreak> EmployeeBreaks { get; }
+        IBaseRepository<ExceptionType> ExceptionTypes { get; }
 
         int Complete();
     }
