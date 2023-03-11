@@ -1,0 +1,13 @@
+.my_exception{
+    margin: 50px;
+    text-align: center;
+}
+.table th,
+.table td{
+    position: relative;
+    font-size: 14px;
+}
+.action_btn{
+    color: white;
+    font-size: 14px;
+}

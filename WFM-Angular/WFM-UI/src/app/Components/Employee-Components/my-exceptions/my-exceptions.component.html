@@ -1,0 +1,37 @@
+<div class="my_exception">
+<table class="table table-bordered table-striped">
+    <thead class="table-dark">
+      <tr>
+        <th scope="col">#Exception Id</th>
+        <th scope="col">Creator Name</th>
+        <th scope="col">Username</th>
+        <th scope="col">Date</th>
+        <th scope="col">From</th>
+        <th scope="col">To</th>
+        <th scope="col">Exception Type</th>
+        <th scope="col">Approved By</th>
+        <th scope="col">Status</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let exception of allEmpExceptions">
+        <th scope="row">{{exception.id}}</th>
+        <td>{{exception.user['fullName']}}</td>
+        <td>{{exception.user['userName']}}</td>
+        <td>{{exception.exceptionDate | date: "dd-MM-yyyy"}}</td>
+        <td>{{exception.from}}</td>
+        <td>{{exception.to}}</td>
+        <td>{{exception.exceptionType['exceptionName']}}</td>
+        <td>TL- Smeh Ali</td>
+        <td>{{exception.exceptionStatus['status']}}</td>
+        <td>
+            <a class="btn btn-warning m-1 action_btn">Dispute</a>
+            <a class="btn btn-danger action_btn">Cancel</a>
+        </td>
+      </tr>
+    
+
+    </tbody>
+</table>
+</div>

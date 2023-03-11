@@ -1,0 +1,108 @@
+.schedual_body{
+  margin: 5px;
+}
+.hoursTable {
+  --size: 4;
+  table-layout: fixed;
+  border-collapse: collapse;
+  font-size: 0.8rem;
+}
+
+.hoursTable th,
+.hoursTable td{
+  border: 1px solid #aaa;
+  position: relative;
+  min-width: calc(var(--size) * 1em);
+}
+
+
+.hoursTable th {
+  white-space: nowrap;
+  padding: 1rem 0;
+}
+
+.hoursTable .label {
+  position: relative;
+  background: #0bf;
+  padding: 0.5rem 0;
+  text-align: center;
+  height: 2rem;
+  left: calc(var(--from) * var(--size) * 1em);
+  width: calc((var(--to) - var(--from)) * var(--size) * 1em);
+}
+
+.hoursTable .label2 {
+  border: 1px solid#969393;
+  background: rgb(251, 250, 250);
+  position: relative;
+  text-align: center;
+  top: 0.1rem;
+  height: 2.4rem;
+  cursor: pointer;
+  left: calc(var(--from) * var(--size) * 1em);
+  width: calc((var(--to) - var(--from)) * var(--size) * 1em);
+}
+
+.hoursTable .Work{
+  height: 0.5rem;
+  background: rgb(3, 26, 153);
+  border: none;
+}
+.hoursTable .DayOff{
+    height: 0.5rem;
+    background: rgb(11, 185, 34);
+    border: none;
+  }
+
+  .hoursTable .Sick,
+   .hoursTable .NoShow{
+    height: 0.5rem;
+    background: rgb(211, 20, 3);
+    border: none;
+  }
+
+  .Annual{
+    height: 0.5rem;
+    background: rgb(119, 6, 225);
+    border: none;
+  }
+ 
+
+.hoursTable .braek {
+    position: absolute;
+    word-wrap: break-word;    
+    top:0.5rem;
+    z-index: 1000;
+    background: rgb(6, 231, 137);
+    padding: 0.5rem 0;
+    text-align: center;
+    height: 2rem;
+    left: calc(var(--from) * var(--size) * 1em);
+    width: calc((var(--to) - var(--from)) * var(--size) * 1em);
+  }
+
+  .hoursTable .braek2 {
+    position: absolute;
+    border: 1px solid#969393;
+    background: rgb(255, 255, 255);
+    word-wrap: break-word;    
+    top: 0.5rem;
+    height: 2.4rem;
+    z-index: 1000;
+    text-align: center;
+    cursor: pointer;
+    left: calc(var(--from) * var(--size) * 1em);
+    width: calc((var(--to) - var(--from)) * var(--size) * 1em);
+  }
+  
+  .hoursTable .breakheader2{
+    height: 0.4rem;
+    background: #b5b3b3;
+    border: none;
+  }
+
+  #typOfDay{
+    text-align: left;
+    margin-left: 2px;
+    margin-top: 2px;
+  }

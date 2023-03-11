@@ -1,0 +1,10 @@
+.container{
+    margin: auto;
+    margin-top: 20px;
+    width: 30%;
+}
+
+#res_massage{
+    text-align: center;
+    margin-top: 5px;
+}

@@ -1,0 +1,76 @@
+<div class="schedual_body">
+    <table class="hoursTable table-striped">
+        <thead>
+          <tr class="hours">
+            <th></th>
+            <th>12 AM</th>
+            <th> 1 AM</th>
+            <th> 2 AM</th>
+            <th> 3 AM</th>
+            <th> 4 AM</th>
+            <th> 5 AM</th>
+            <th> 6 AM</th>
+            <th> 7 AM</th>
+            <th> 8 AM</th>
+            <th> 9 AM</th>
+            <th>10 AM</th>
+            <th>11 AM</th>
+            <th>12 PM</th>
+            <th> 1 PM</th>
+            <th> 2 PM</th>
+            <th> 3 PM</th>
+            <th> 4 PM</th>
+            <th> 5 PM</th>
+            <th> 6 PM</th>
+            <th> 7 PM</th>
+            <th> 8 PM</th>
+            <th> 9 PM</th>
+            <th>10 PM</th>
+            <th>11 PM</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let emp of allAppointment">
+            <th>{{emp.appointMentDate | date: "dd-MM-yyyy"}}</th>
+            <td colspan=24>
+              <div class="label2" style="--from:{{emp.from | slice:0:2}}; --to:{{emp.to | slice:0:2}}" (click)="schedualDetails()">
+          
+                <div [class]="emp.typeOfDay['typeName']">
+                 
+                </div>
+                <p id="typOfDay">{{emp.typeOfDay['typeName']}} : {{emp.from | slice:0:5}} - {{emp.to | slice:0:5}}</p>
+              </div>
+              <div *ngFor="let b of emp.breaks" class="braek2" style="--from:{{b.from | slice:0:2}}; --to:{{b.to | slice:0:2}}">
+                <div class="breakheader2">     
+                </div>
+                Break
+            </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+</div> 
+
+
+<button (click)="schedualDetails()">clcick</button>
+<input type="time" [value]="value" (change)="getValue($event)"> 
+<p>employee-schedule works!</p>
+<div *ngFor="let emp of allAppointment">
+  <h6>slice: {{emp.from | slice:0:2}}</h6>
+    <h5>Id: {{emp.id}}</h5>
+    <h5>EmployessPID: {{emp.employeePID}}</h5>
+    <h5>Type Of Day Id : {{emp.typeOfDayId}}</h5>
+    <h5>Date : {{emp.appointMentDate}}</h5>
+    <h5>Date : {{emp.appointMentDate | date: "dd-MM-yyyy"}}</h5>
+
+    <h5>From : {{emp.from}}</h5>
+    <h5>To : {{emp.to}}</h5>
+    <h5>Type Of Day: {{emp.typeOfDay['typeName']}}</h5>
+    <h5 *ngFor="let b of emp.breaks">BreakId: {{b.id}},from:{{b.from}} - {{b.from | slice:0:2}}, to: {{b.to}} - {{b.to | slice:0:2}}</h5>
+   
+    <div *ngIf="!emp.exceptions.length">empty</div>
+    <h5 *ngFor="let ex of emp.exceptions">Exceptions: {{ex.id}},from: {{ex.from}}, to: {{ex.to}}</h5>
+    
+    <hr>
+</div>
+
