@@ -59,5 +59,19 @@ namespace WFM_API.Services
           
         }
 
+        public async Task<T> FindAsSingleQuery(Expression<Func<T, bool>> criteria, string[] includes = null)
+        {
+            IQueryable<T> query = _context.Set<T>();
+            if (includes != null)
+                foreach (var include in includes)
+                    query = query.Include(include);
+
+
+            var result = await query.SingleOrDefaultAsync(criteria);
+            return result;
+
+        }
+
+
     }
 }

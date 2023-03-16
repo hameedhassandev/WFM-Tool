@@ -33,22 +33,30 @@
           <tr *ngFor="let emp of allAppointment">
             <th>{{emp.appointMentDate | date: "dd-MM-yyyy"}}</th>
             <td colspan=24>
-              <div class="label2" style="--from:{{emp.from | slice:0:2}}; --to:{{emp.to | slice:0:2}}" (click)="schedualDetails()">
+              <div class="label2" style="--from:{{emp.from | slice:0:2}}; --to:{{emp.to ==='00:00:00' ? '24:00:00' : emp.to | slice:0:2}}" (click)="schedualDetails()">
           
                 <div [class]="emp.typeOfDay['typeName']">
                  
                 </div>
-                <p id="typOfDay">{{emp.typeOfDay['typeName']}} : {{emp.from | slice:0:5}} - {{emp.to | slice:0:5}}</p>
+                <p id="typOfDay">{{emp.typeOfDay['typeName']}} : {{emp.from ==='00:00:00' ? '12:00' : emp.from | slice:0:5}} - {{emp.to ==='00:00:00' ? '12:00' : emp.to | slice:0:5}}</p>
               </div>
               <div *ngFor="let b of emp.breaks" class="braek2" style="--from:{{b.from | slice:0:2}}; --to:{{b.to | slice:0:2}}">
                 <div class="breakheader2">     
                 </div>
                 Break
             </div>
+            <div  *ngFor="let ex of emp.exceptions"  class="braek2" style="--from:{{ex.from | slice:0:2}}; --to:{{ex.to | slice:0:2}}">
+              <!-- ex.exceptionStatusId === 1 -->
+              <div class="Task">     
+              </div>
+              Excep
+            </div>
             </td>
           </tr>
         </tbody>
       </table>
+      
+  
 </div> 
 
 

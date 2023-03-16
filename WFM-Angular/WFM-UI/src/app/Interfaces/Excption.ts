@@ -2,6 +2,7 @@ import { Time } from "@angular/common";
 import { User } from "./User";
 import { ExceptionStatus } from "./ExceptionStatus";
 import { ExceptionType } from "./ExceptionType";
+import { ExceComment } from "./ExceComment";
 
 export interface Excption{
     id:number,
@@ -13,6 +14,7 @@ export interface Excption{
     to:Time,
     exceptionStatus:ExceptionStatus,
     exceptionType:ExceptionType,
+    exceptionComments:ExceComment[]|null
     
 
 

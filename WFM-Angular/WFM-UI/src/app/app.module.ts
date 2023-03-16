@@ -11,6 +11,8 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { SchedualeDetailsComponent } from './Components/Employee-Components/scheduale-details/scheduale-details.component';
 import { MyExceptionsComponent } from './Components/Employee-Components/my-exceptions/my-exceptions.component';
 import { CreateExceptionComponent } from './Components/Employee-Components/create-exception/create-exception.component';
+import { FindOrdisputeExceptionComponent } from './Components/Employee-Components/find-ordispute-exception/find-ordispute-exception.component';
+import { EmployeesExceptionsComponent } from './Components/Team-Leaders-Component/employees-exceptions/employees-exceptions.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,8 @@ import { CreateExceptionComponent } from './Components/Employee-Components/creat
     SchedualeDetailsComponent,
     MyExceptionsComponent,
     CreateExceptionComponent,
+    FindOrdisputeExceptionComponent,
+    EmployeesExceptionsComponent,
     
   ],
   imports: [

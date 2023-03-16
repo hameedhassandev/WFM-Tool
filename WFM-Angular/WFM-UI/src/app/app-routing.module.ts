@@ -5,6 +5,8 @@ import { EmployeeScheduleComponent } from './Components/Employee-Components/empl
 import { ManageEmplAppointmentComponent } from './Components/WFM-Components/manage-empl-appointment/manage-empl-appointment.component';
 import { MyExceptionsComponent } from './Components/Employee-Components/my-exceptions/my-exceptions.component';
 import { CreateExceptionComponent } from './Components/Employee-Components/create-exception/create-exception.component';
+import { FindOrdisputeExceptionComponent } from './Components/Employee-Components/find-ordispute-exception/find-ordispute-exception.component';
+import { EmployeesExceptionsComponent } from './Components/Team-Leaders-Component/employees-exceptions/employees-exceptions.component';
 
 const routes: Routes = [
   {path:'login', component:LoginComponent},
@@ -12,6 +14,10 @@ const routes: Routes = [
   {path:'manage-appointment', component:ManageEmplAppointmentComponent},
   {path:'my-exception', component:MyExceptionsComponent},
   {path:'create-exception', component:CreateExceptionComponent},
+  {path:'find-or-dispute-exception', component:FindOrdisputeExceptionComponent},
+
+  {path:'employess-exceptions', component:EmployeesExceptionsComponent},
+
 ];
 
 @NgModule({

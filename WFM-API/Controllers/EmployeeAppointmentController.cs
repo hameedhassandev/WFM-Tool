@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 using WFM_API.DTOS;
 using WFM_API.DTOS.CreateDtos;
+using WFM_API.Helpers;
 using WFM_API.Models;
 using WFM_API.UnitOfWork;
 
@@ -27,13 +28,14 @@ namespace WFM_API.Controllers
         [HttpGet("EmployeeAppointments")]
         public async Task<IActionResult> EmployeeAppointments(string EmployeePID)
         {
-            var emp = await _unitOfWork.EmployeeAppointments.FindAsQuery(e=>e.EmployeePID == EmployeePID, new[] { "TypeOfDay", "Breaks", "Exceptions" });
+            var emp = await _unitOfWork.EmployeeAppointments.FindAsQuery(e=>e.EmployeePID == EmployeePID , new[] { "TypeOfDay", "Breaks", "Exceptions" });
 
             if(emp == null) return NotFound();
 
+          //  emp.Where(x => x.Exceptions.Where(e=>e.ExceptionStatusId == (int)ExceptionStatusVal.Approved));
            var results = _mapper.Map<IEnumerable<EmployeeAppointmentDto>>(emp);
 
-            return Ok(results);
+           return Ok(results);
            //return Ok(emp);
         }
 

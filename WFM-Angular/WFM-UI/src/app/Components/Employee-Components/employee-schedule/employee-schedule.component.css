@@ -54,6 +54,7 @@
     border: none;
   }
 
+  .hoursTable .Task,
   .hoursTable .Sick,
    .hoursTable .NoShow{
     height: 0.5rem;

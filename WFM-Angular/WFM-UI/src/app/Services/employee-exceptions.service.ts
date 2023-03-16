@@ -24,10 +24,37 @@ export class EmployeeExceptionsService {
     return this._http.get<ExceptionType[]>(`${this.exceptions}/GetExceptonTypes`);
 
   }
+  getAllExceptionByExcId(exceptionId:number, empPID:string):Observable<ExceptionType>{
+    return this._http.get<ExceptionType>(`${this.exceptions}/GetExcepton?exceptionId=${exceptionId}&empPID=${empPID}`);
 
+  }
   createException(data:FormData){
     return this._http.post<any>(`${this.exceptions}/CreateException`,data)
 
   }
 
+  cancelException(data:any){
+    return this._http.put<any>(`${this.exceptions}/CancelException`, data);
+
+  }
+   
+  disputeException(data:any){ 
+    return this._http.put<any>(`${this.exceptions}/DisputeException`, data);
+  }
+
+  approvexceptionByTl(data:any){ 
+    return this._http.put<any>(`${this.exceptions}/ApproveExceptionByTeamLeader`, data);
+  }
+
+  approvexceptionByWFM(data:any){ 
+    return this._http.put<any>(`${this.exceptions}/ApproveExceptionByWFM`, data);
+  }
+
+  rejectedException(data:any){ 
+    return this._http.put<any>(`${this.exceptions}/RejectException`, data);
+  }
+
+
+
 }
+ 

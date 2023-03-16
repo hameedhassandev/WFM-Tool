@@ -1,0 +1,36 @@
+
+<div class="employee_exception">
+    <form class="form-inline" [formGroup]="filterForm" (ngSubmit)="filterByDate()">
+        <div class="form-group">
+            <input type="date" class="form-control mb-3 mr-sm-2" formControlName="filterDate" required>
+        </div>
+        <button type="submit" class="btn btn-warning mb-3">Filter By Date</button>
+    </form>
+<table class="table table-bordered table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">ExcId#</th>
+        <th scope="col">Creator</th>
+        <th scope="col">Date</th>
+        <th scope="col">From</th>
+        <th scope="col">To</th>
+        <th scope="col">Exception Type</th>
+        <th scope="col">Status</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">1</th>
+        <td>Mark</td>
+        <td>Otto</td>
+        <td>@mdo</td>
+        <td>Mark</td>
+        <td>Otto</td>
+        <td>@mdo</td>
+        <td>@mdo</td>
+      </tr>
+    
+    </tbody>
+</table>
+</div>

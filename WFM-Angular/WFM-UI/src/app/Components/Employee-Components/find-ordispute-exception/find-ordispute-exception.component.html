@@ -1,0 +1,53 @@
+<div class="container">
+    <div class="12">
+        <div class="row">
+            <div class="col-6">
+                <!-- <p>{{findForm.value | json}}</p> -->
+                <form [formGroup]="findForm" (ngSubmit)="show()">
+                    <div class="form-group">
+                        <label for="exceptionId">ExceptionId#</label>
+                        <input formControlName="exceptionTypeId" type="number" class="form-control">
+                    </div>
+                </form>
+                <div class="form-group">
+                    <label for="exceptiontype">Exception Type</label>
+                    <input type="text" value="{{excepDetails.exceptionType['exceptionName']}}" class="form-control" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="exceptionDate">Exception Date and Time</label>
+                    <input type="text" 
+                    value="Date: {{excepDetails.exceptionDate | date: 'dd-MM-yyyy'}}, From:{{excepDetails.from | slice:0:5}}, To:{{excepDetails.to | slice:0:5}}"
+                     class="form-control" readonly>
+                </div>
+               
+                <div class="form-group">
+                    <label for="exceptionStatus">Exception Status</label>
+                    <input type="text" value="{{excepDetails.exceptionStatus['status']}}"  class="form-control" readonly>
+                </div>
+                <!-- {{changeExcForm.value| json}} -->
+                <form [formGroup]="changeExcForm" (ngSubmit)="changeExc()">
+                <div class="form-group">
+                    <label for="exceptionStatus">Comment</label>
+                    <textarea class="form-control" formControlName="comment"></textarea>
+                </div>
+                <input type="submit" value="Cancel" class="btn btn-warning">
+            </form>
+            </div>
+            <div class="col-6">
+                <table class="table table-striped table-bordered">
+                    <thead>
+                        <th>Creator</th>
+                        <th>Comment</th>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let c of excepDetails.exceptionComments">
+                            <!-- <td>{{c.creatorPID}}</td> -->
+                            <td>Sameh Ahmed</td>
+                            <td>{{c.comment}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+

@@ -34,6 +34,19 @@ namespace WFM_API.Services
             return EmpApp.Id;
          }
 
+        public async Task<bool> isExceptionExist(string employeeId, EmpException exceptionObj)
+        {
+            if (exceptionObj == null) return false;
+            var allEmpxceptions = await _context.Exceptions.Where(e=>e.CreatorPID == employeeId).ToListAsync();
+            if (allEmpxceptions == null) return false;
+            foreach(var exc in allEmpxceptions)
+            {
+                if(object.Equals(exc, exceptionObj)) return true;
+            }
+            return false;
+        }
+
+      
 
 
     }

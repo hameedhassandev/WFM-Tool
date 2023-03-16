@@ -11,6 +11,8 @@ namespace WFM_API.Repositories
         void Delete(T entity);
         Task<IEnumerable<T>> GetAll();
         Task<T> Find(Expression<Func<T, bool>> criteria);
+        Task<T> FindAsSingleQuery(Expression<Func<T, bool>> criteria, string[] includes = null);
+
         Task<IEnumerable<T>> FindAsQuery(Expression<Func<T, bool>> criteria, string[] includes = null);
 
     }

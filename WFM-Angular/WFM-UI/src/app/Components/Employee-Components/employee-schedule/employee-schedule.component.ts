@@ -41,13 +41,14 @@ export class EmployeeScheduleComponent implements OnInit {
   }
 
   schedualDetails(){
-    this._dialog.open(SchedualeDetailsComponent,{
-      width:'60%',
-      height:'50%',
+    // this._dialog.open(SchedualeDetailsComponent,{
+    //   width:'60%',
+    //   height:'50%',
       
-    }).afterClosed().subscribe(val => {
+    // }).afterClosed().subscribe(val => {
         
-    })
+    // })
+    alert('Exception Details')
   }
   
 

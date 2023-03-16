@@ -6,6 +6,8 @@ namespace WFM_API.Repositories
     {
         Task<bool> isExceptionDuringDay(DateTime exceptionDate,string empPID, TimeSpan from, TimeSpan to);
         Task<int> getAppointmentId(string employeeId, DateTime excdate);
+        Task<bool> isExceptionExist(string employeeId, EmpException exceptionObj);
+
 
     }
 }

@@ -46,6 +46,9 @@ namespace WFM_API.Controllers
                 ExceptionStatusId = (int)ExceptionStatusVal.Pending,
             };
 
+            var isExceptionExist = await _unitOfWork.Exceptions.isExceptionExist(dto.CreatorPID, empExc);
+            if (isExceptionExist) return BadRequest($"This Exception is overlap with exceptionId = {empExc.Id}");
+
             var result = await _unitOfWork.Exceptions.Add(empExc);
             _unitOfWork.Complete();
 
@@ -153,11 +156,23 @@ namespace WFM_API.Controllers
 
 
         [HttpPut("CancelException")]
-        public async Task<IActionResult> CancelException([FromForm] int ExceptionId)
+        public async Task<IActionResult> CancelException([FromForm] UpdateExceptionStatusDto dto)
         {
-            var except = await _unitOfWork.Exceptions.GetById(ExceptionId);
+            var except = await _unitOfWork.Exceptions.GetById(dto.ExceptionId);
 
-            if (except == null) return NotFound();
+            if (except == null) return NotFound("No Exception Found!");
+
+            if (!String.IsNullOrEmpty(dto.Comment))
+            {
+                ExceptionComment excComment = new()
+                {
+                    Comment = dto.Comment,
+                    CreatorPID = dto.CreatorPID,
+                    EmpExceptionId = dto.ExceptionId,
+                };
+                await _unitOfWork.ExceptionComments.Add(excComment);
+                _unitOfWork.Complete();
+            }
 
             except.ExceptionStatusId = (int)ExceptionStatusVal.CanceledByCreator;
             _unitOfWork.Exceptions.Update(except);
@@ -178,12 +193,49 @@ namespace WFM_API.Controllers
             return Ok(results);
         }
 
+        [HttpGet("GetAllEmpExceptoinsByDate")]
+        public async Task<IActionResult> GetAllEmpExceptoinsByDate(string employeePID,DateTime date)
+        {
+            var employee = await _unitOfWork.Employees.Find(e => e.Id == employeePID);
+            if (employee == null) return NotFound();
+
+            var allExceptionsByDate = await _unitOfWork.Exceptions.FindAsQuery(e => e.CreatorPID == employeePID && e.ExceptionDate.CompareTo(date) == 0, new[] { "ExceptionStatus", "ExceptionComments", "ExceptionType" });
+
+            var results = _mapper.Map<IEnumerable<EmployeeExceptionDto>>(allExceptionsByDate);
+
+            return Ok(results);
+        }
+
         [HttpGet("GetExceptonTypes")]
         public async Task<IActionResult> GetExceptonTypes()
         {
             var allTypes = await _unitOfWork.ExceptionTypes.GetAll();
             if (allTypes == null) return NotFound();
             return Ok(allTypes);
+        }
+
+
+        [HttpGet("GetExcepton")]
+        public async Task<IActionResult> GetExcepton(int exceptionId,string empPID)
+        {
+            var exception = await _unitOfWork.Exceptions.FindAsSingleQuery(e => e.Id == exceptionId && e.CreatorPID == empPID, new[] { "ExceptionStatus", "ExceptionComments", "ExceptionType" });
+
+            if (exception == null) return NotFound();
+
+           //var result = _mapper.Map<EmployeeExceptionDto>(exception);
+
+            return Ok(exception);
+        }
+
+        [HttpGet("GetExceptonsForTL")]
+        public async Task<IActionResult> GetExceptonsForTL(string teamLeaderId)
+        {
+            var allExceptionForTl = await _unitOfWork.Exceptions.FindAsQuery(c=>c.ApprovedByPID == teamLeaderId, new[] { "ExceptionStatus", "ExceptionType" });
+            if (allExceptionForTl == null) return NotFound();
+
+            var results = _mapper.Map<IEnumerable<EmployeeExceptionDto>>(allExceptionForTl);
+
+            return Ok(results);
         }
 
     }

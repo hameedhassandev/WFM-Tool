@@ -36,6 +36,7 @@ SELECT * FROM dbo.Exceptions
 SELECT * FROM dbo.EmployeeAppointments
 SELECT * FROM dbo.EmpBreak
 
+SELECT * FROM dbo.ExceptionComment
 DELETE FROM dbo.EmployeeAppointments WHERE Id=10
 
 SELECT * FROM dbo.TypeOfDay

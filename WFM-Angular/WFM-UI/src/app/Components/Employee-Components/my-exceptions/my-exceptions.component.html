@@ -1,4 +1,11 @@
 <div class="my_exception">
+  <form class="form-inline">
+    <div class="form-group">
+        <input type="date" class="form-control mb-3 mr-sm-2" required>
+    </div>
+    <button type="submit" class="btn btn-warning mb-3">Filter By Date</button>
+</form>
+
 <table class="table table-bordered table-striped">
     <thead class="table-dark">
       <tr>
@@ -11,7 +18,6 @@
         <th scope="col">Exception Type</th>
         <th scope="col">Approved By</th>
         <th scope="col">Status</th>
-        <th scope="col">Action</th>
       </tr>
     </thead>
     <tbody>
@@ -25,10 +31,7 @@
         <td>{{exception.exceptionType['exceptionName']}}</td>
         <td>TL- Smeh Ali</td>
         <td>{{exception.exceptionStatus['status']}}</td>
-        <td>
-            <a class="btn btn-warning m-1 action_btn">Dispute</a>
-            <a class="btn btn-danger action_btn">Cancel</a>
-        </td>
+      
       </tr>
     
 
