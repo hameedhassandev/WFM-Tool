@@ -9,6 +9,7 @@ export interface Excption{
     creatorPID:string,
     approvedByPID:string,
     user:User,
+    manager:User,
     exceptionDate:Date,
     from:Time,
     to:Time,

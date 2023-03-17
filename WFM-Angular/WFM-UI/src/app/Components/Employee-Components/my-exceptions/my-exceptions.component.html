@@ -11,7 +11,6 @@
       <tr>
         <th scope="col">#Exception Id</th>
         <th scope="col">Creator Name</th>
-        <th scope="col">Username</th>
         <th scope="col">Date</th>
         <th scope="col">From</th>
         <th scope="col">To</th>
@@ -24,12 +23,11 @@
       <tr *ngFor="let exception of allEmpExceptions">
         <th scope="row">{{exception.id}}</th>
         <td>{{exception.user['fullName']}}</td>
-        <td>{{exception.user['userName']}}</td>
         <td>{{exception.exceptionDate | date: "dd-MM-yyyy"}}</td>
         <td>{{exception.from}}</td>
         <td>{{exception.to}}</td>
         <td>{{exception.exceptionType['exceptionName']}}</td>
-        <td>TL- Smeh Ali</td>
+        <td>TL - {{exception.manager['fullName']}}</td>
         <td>{{exception.exceptionStatus['status']}}</td>
       
       </tr>

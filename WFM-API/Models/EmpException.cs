@@ -23,6 +23,9 @@ namespace WFM_API.Models
         [ForeignKey("CreatorPID")]
         public AppUser? User { get; set; }
 
+        [ForeignKey("ApprovedByPID")]
+        public AppUser? Manager { get; set; }
+
         [Required]
         public DateTime ExceptionDate { get; set; }
 

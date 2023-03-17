@@ -186,7 +186,7 @@ namespace WFM_API.Controllers
             var employee = await _unitOfWork.Employees.Find(e => e.Id == employeePID);
             if (employee == null) return NotFound();
 
-            var allExceptions  = await _unitOfWork.Exceptions.FindAsQuery(e=>e.CreatorPID == employeePID, new[] { "ExceptionStatus", "ExceptionComments", "ExceptionType" }  );
+            var allExceptions  = await _unitOfWork.Exceptions.FindAsQuery(e=>e.CreatorPID == employeePID, new[] { "ExceptionStatus", "ExceptionComments", "ExceptionType", "Manager" }  );
 
             var results = _mapper.Map<IEnumerable<EmployeeExceptionDto>>(allExceptions);
 
@@ -199,7 +199,7 @@ namespace WFM_API.Controllers
             var employee = await _unitOfWork.Employees.Find(e => e.Id == employeePID);
             if (employee == null) return NotFound();
 
-            var allExceptionsByDate = await _unitOfWork.Exceptions.FindAsQuery(e => e.CreatorPID == employeePID && e.ExceptionDate.CompareTo(date) == 0, new[] { "ExceptionStatus", "ExceptionComments", "ExceptionType" });
+            var allExceptionsByDate = await _unitOfWork.Exceptions.FindAsQuery(e => e.ApprovedByPID == employeePID && e.ExceptionDate.CompareTo(date) == 0, new[] { "ExceptionStatus", "ExceptionComments", "ExceptionType","User" });
 
             var results = _mapper.Map<IEnumerable<EmployeeExceptionDto>>(allExceptionsByDate);
 
@@ -218,7 +218,7 @@ namespace WFM_API.Controllers
         [HttpGet("GetExcepton")]
         public async Task<IActionResult> GetExcepton(int exceptionId,string empPID)
         {
-            var exception = await _unitOfWork.Exceptions.FindAsSingleQuery(e => e.Id == exceptionId && e.CreatorPID == empPID, new[] { "ExceptionStatus", "ExceptionComments", "ExceptionType" });
+            var exception = await _unitOfWork.Exceptions.FindAsSingleQuery(e => e.Id == exceptionId && e.CreatorPID == empPID, new[] { "ExceptionStatus", "ExceptionComments", "ExceptionType", "Manager" });
 
             if (exception == null) return NotFound();
 
@@ -230,7 +230,7 @@ namespace WFM_API.Controllers
         [HttpGet("GetExceptonsForTL")]
         public async Task<IActionResult> GetExceptonsForTL(string teamLeaderId)
         {
-            var allExceptionForTl = await _unitOfWork.Exceptions.FindAsQuery(c=>c.ApprovedByPID == teamLeaderId, new[] { "ExceptionStatus", "ExceptionType" });
+            var allExceptionForTl = await _unitOfWork.Exceptions.FindAsQuery(c=>c.ApprovedByPID == teamLeaderId, new[] { "ExceptionStatus", "ExceptionType", "Manager" ,"User"});
             if (allExceptionForTl == null) return NotFound();
 
             var results = _mapper.Map<IEnumerable<EmployeeExceptionDto>>(allExceptionForTl);

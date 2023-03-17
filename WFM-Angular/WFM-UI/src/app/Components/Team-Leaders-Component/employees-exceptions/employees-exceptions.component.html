@@ -4,7 +4,8 @@
         <div class="form-group">
             <input type="date" class="form-control mb-3 mr-sm-2" formControlName="filterDate" required>
         </div>
-        <button type="submit" class="btn btn-warning mb-3">Filter By Date</button>
+        <button type="submit" class="btn btn-warning mb-3 mr-sm-2"  [disabled]="!filterForm.valid" >Filter By Date</button>
+        <a class="btn btn-info mb-3" (click)="clearFilter()" >Clear Filter</a>
     </form>
 <table class="table table-bordered table-striped">
     <thead class="thead-dark">
@@ -19,18 +20,20 @@
         <th scope="col">Action</th>
       </tr>
     </thead>
-    <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-        <td>@mdo</td>
+    <tbody *ngIf="!isEmpty">
+      <tr *ngFor="let exception of employeeExceptions">
+        <th scope="row">{{exception.id}}</th>
+        <td>{{exception.user['fullName']}}</td>
+        <td>{{exception.exceptionDate | date: "dd-MM-yyyy"}}</td>
+        <td>{{exception.from}}</td>
+        <td>{{exception.to}}</td>
+        <td>{{exception.exceptionType['exceptionName']}}</td>
+        <td>{{exception.exceptionStatus['status']}}</td>
+      <td><a href="#">Action</a></td>
       </tr>
     
     </tbody>
 </table>
+<p *ngIf="isEmpty" id="no_data">{{filterMsg}}</p>
+
 </div>

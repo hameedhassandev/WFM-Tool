@@ -9,6 +9,7 @@ namespace WFM_API.DTOS
         public string? creatorPID { get; set; }
         public string? approvedByPID { get; set; }
         public EmployeeDto? User { get; set; }
+        public EmployeeDto? Manager { get; set; }
         public DateTime exceptionDate { get; set; }
         public TimeSpan from { get; set; }
         public TimeSpan to { get; set; }

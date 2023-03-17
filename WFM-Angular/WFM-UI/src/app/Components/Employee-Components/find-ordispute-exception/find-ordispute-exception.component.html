@@ -1,37 +1,61 @@
 <div class="container">
     <div class="12">
         <div class="row">
-            <div class="col-6">
-                <!-- <p>{{findForm.value | json}}</p> -->
-                <form [formGroup]="findForm" (ngSubmit)="show()">
-                    <div class="form-group">
-                        <label for="exceptionId">ExceptionId#</label>
-                        <input formControlName="exceptionTypeId" type="number" class="form-control">
-                    </div>
-                </form>
-                <div class="form-group">
-                    <label for="exceptiontype">Exception Type</label>
-                    <input type="text" value="{{excepDetails.exceptionType['exceptionName']}}" class="form-control" readonly>
-                </div>
-                <div class="form-group">
-                    <label for="exceptionDate">Exception Date and Time</label>
-                    <input type="text" 
-                    value="Date: {{excepDetails.exceptionDate | date: 'dd-MM-yyyy'}}, From:{{excepDetails.from | slice:0:5}}, To:{{excepDetails.to | slice:0:5}}"
-                     class="form-control" readonly>
-                </div>
+            <div class="col-6" style="text-align: center;">
                
-                <div class="form-group">
-                    <label for="exceptionStatus">Exception Status</label>
-                    <input type="text" value="{{excepDetails.exceptionStatus['status']}}"  class="form-control" readonly>
-                </div>
-                <!-- {{changeExcForm.value| json}} -->
-                <form [formGroup]="changeExcForm" (ngSubmit)="changeExc()">
-                <div class="form-group">
-                    <label for="exceptionStatus">Comment</label>
-                    <textarea class="form-control" formControlName="comment"></textarea>
-                </div>
-                <input type="submit" value="Cancel" class="btn btn-warning">
-            </form>
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <th>Property</th>
+                    <th>Data</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>ExceptionId</td>
+                        <td><form [formGroup]="findForm" (ngSubmit)="show()">
+                            <div class="form-group">
+                                <input formControlName="exceptionTypeId" style="width: 50%; margin: auto;" type="number" class="form-control">
+                            </div>
+                        </form></td>
+                    </tr>
+                    <tr>
+                        <td>Shift Date</td>
+                        <td>{{excepDetails.exceptionDate | date: 'dd-MM-yyyy'}}</td>
+                    </tr> 
+                    <tr>
+                        <td>From</td>
+                        <td>{{excepDetails.from | slice:0:5}}</td>
+                    </tr>
+                    <tr>
+                        <td>To</td>
+                        <td>{{excepDetails.to | slice:0:5}}</td>
+                    </tr>
+                    <tr>
+                        <td>Exception Type</td>
+                        <td>{{excepDetails.exceptionType['exceptionName']}}</td>
+                    </tr>
+                    <tr>
+                        <td>Aprroved By</td>
+                        <td>TL -  {{excepDetails.manager['fullName']}}</td>
+                    </tr>
+                    <tr>
+                        <td>Status</td>
+                        <td>{{excepDetails.exceptionStatus['status']}}</td>
+                    </tr>
+                    <tr>
+                      <td>Comment</td>
+                      <td>
+                      <form [formGroup]="changeExcForm" (ngSubmit)="changeExc()">
+                        <div class="form-group">
+                            <textarea class="form-control" formControlName="comment"></textarea>
+                        </div>
+                        <input type="submit" value="Cancel" class="btn btn-warning">
+                      </form>
+                     </td> 
+                    </tr>
+                   
+                </tbody>
+                </table>
+
             </div>
             <div class="col-6">
                 <table class="table table-striped table-bordered">

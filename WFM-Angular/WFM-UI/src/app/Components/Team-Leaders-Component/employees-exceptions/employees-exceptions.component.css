@@ -9,3 +9,8 @@
     position: relative;
     font-size: 14px;
 }
+#no_data{
+    text-align: center;
+    padding: 5px;
+    color: red;
+}
