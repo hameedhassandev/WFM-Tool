@@ -1,8 +1,26 @@
 .schedual_body{
-  margin: 5px;
+  margin: auto;
+  width: 100%;
+}
+.nav_item{
+  list-style-type: none;
+  margin: 0;
+  padding: 10px;
+  background-color: rgb(49, 141, 227);
+  overflow: hidden;
+}
+
+li {
+  float: left;
+ 
+}
+
+.li a {
+  display: block;
+  padding: 8px;
 }
 .hoursTable {
-  --size: 4;
+  --size: 4.2;
   table-layout: fixed;
   border-collapse: collapse;
   font-size: 0.8rem;

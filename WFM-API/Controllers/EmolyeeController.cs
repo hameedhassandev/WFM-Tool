@@ -20,12 +20,15 @@ namespace WFM_API.Controllers
 
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
 
-        public EmolyeeController(IUnitOfWork unitOfWork,IMapper mapper, UserManager<AppUser> userMnager)
+        public EmolyeeController(IUnitOfWork unitOfWork,IMapper mapper, 
+            UserManager<AppUser> userMnager, RoleManager<IdentityRole> roleManager)
         {
             _unitOfWork = unitOfWork;
             _userMnager = userMnager;
+            _roleManager = roleManager;
             _mapper = mapper;
         }
        /* public EmolyeeController(UserManager<AppUser> userMnager, IBaseRepository<AppUser> userRepo)
@@ -56,7 +59,7 @@ namespace WFM_API.Controllers
                 return BadRequest(errors);
             }
             //add role
-             await _userMnager.AddToRoleAsync(employee, Roles.EmployeeRole);
+             await _userMnager.AddToRoleAsync(employee, dto.RoleName);
 
             return Ok();   
         }
@@ -69,6 +72,15 @@ namespace WFM_API.Controllers
             var results = _mapper.Map<IEnumerable<EmployeeDto>>(usersWithPermission);
 
             return Ok(results);
+        }
+
+        [HttpGet("GetAllRoles")]
+        public async Task<IActionResult> GetAllRoles()
+        {
+            var roles = await _roleManager.Roles.ToListAsync();
+            if(!roles.Any()) NotFound();
+
+            return Ok(roles);
         }
     }
 }

@@ -12,6 +12,9 @@ namespace WFM_API.DTOS.CreateDtos
         public string PhoneNo { get; set; }
         [Required]
         public string Password { get; set; }
+
+        [Required]
+        public string RoleName { get; set; }
         [Required]
         public int DepartmentId { get; set; }
 
