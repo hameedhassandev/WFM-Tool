@@ -31,11 +31,7 @@ namespace WFM_API.Controllers
             _roleManager = roleManager;
             _mapper = mapper;
         }
-       /* public EmolyeeController(UserManager<AppUser> userMnager, IBaseRepository<AppUser> userRepo)
-        {
-                _userMnager = userMnager;
-                 _userRepo = userRepo;
-        }*/
+     
     
         [HttpPost("AddEmployee")]
         public async Task<IActionResult> AddEmployee ([FromForm] CreateEmployeeDto dto)

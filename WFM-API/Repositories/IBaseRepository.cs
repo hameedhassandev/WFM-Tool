@@ -15,5 +15,7 @@ namespace WFM_API.Repositories
 
         Task<IEnumerable<T>> FindAsQuery(Expression<Func<T, bool>> criteria, string[] includes = null);
 
+        Task<IEnumerable<T>> FindWithIncludes(string[] includes);
+
     }
 }

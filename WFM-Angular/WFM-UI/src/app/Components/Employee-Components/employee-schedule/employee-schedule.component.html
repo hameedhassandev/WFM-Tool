@@ -1,10 +1,7 @@
-<ul class="nav_item">
-  <li><a routerLink="/employee-scheduale" class="btn btn-success mr-sm-2">Schedule </a></li>
-  <li><a routerLink="/my-exception" class="btn btn-secondary mr-sm-2">My Exceptions</a></li>
-  <li><a routerLink="/create-exception" class="btn btn-warning mr-sm-2">Create Exception</a></li>
-  <li><a routerLink="/find-or-dispute-exception" class="btn btn-danger mr-sm-2">Find or Dispute Exception</a></li>
-  <!-- <li class="page-item"><a class="page-link mr-sm-2" href="#">Prev</a></li>
-  <li class="page-item"><a class="page-link mr-sm-2" href="#">Next</a></li> -->
+
+<ul class="nav-page">
+  <li id="next-prev"><a class="btn btn-light btn-sm mr-sm-2">&#8250;</a></li>
+  <li id="next-prev"><a class="btn btn-light btn-sm mr-sm-2">&#8249;</a></li>
 </ul>
 
 <div class="schedual_body">
@@ -49,16 +46,16 @@
                 </div>
                 <p id="typOfDay">{{emp.typeOfDay['typeName']}} : {{emp.from ==='00:00:00' ? '12:00' : emp.from | slice:0:5}} - {{emp.to ==='00:00:00' ? '12:00' : emp.to | slice:0:5}}</p>
               </div>
-              <div *ngFor="let b of emp.breaks" class="braek2" style="--from:{{b.from | slice:0:2}}; --to:{{b.to | slice:0:2}}">
+              <div *ngFor="let b of emp.breaks" class="braek2" style="--from:{{b.from | slice:0:2}}.{{b.from | slice:3:4}}; --to:{{b.to | slice:0:2}}.{{b.to | slice:3:4}}">
                 <div class="breakheader2">     
                 </div>
-                Break
+                <p id="typOfDay">Brk</p>
             </div>
-            <div  *ngFor="let ex of emp.exceptions"  class="braek2" style="--from:{{ex.from | slice:0:2}}; --to:{{ex.to | slice:0:2}}">
+            <div  *ngFor="let ex of emp.exceptions"  class="braek2" style="--from:{{ex.from | slice:0:2}}.{{ex.from | slice:3:4}}; --to:{{ex.to | slice:0:2}}.{{ex.to | slice:3:4}}">
               <!-- ex.exceptionStatusId === 1 -->
               <div class="Task">     
               </div>
-              Excep
+              <p id="typOfDay">Exp</p>
             </div>
             </td>
           </tr>

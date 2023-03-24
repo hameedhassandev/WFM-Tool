@@ -1,0 +1,105 @@
+
+.manage-appointment{
+    margin: 10px;
+    padding: 5px;
+}
+
+
+.all-department{
+    position: fixed;
+    overflow-y: scroll;
+    top: 60px;
+    bottom: 10px;
+    border: 2px solid#ddd;
+    width: 15%;
+    padding: 10px;
+
+}
+
+
+.main-page{
+  border: 2px solid #ddd;
+ 
+}
+
+.manage-employee{
+  width: 100%;
+}
+
+.hoursTable{
+  --size: 3.68;
+  table-layout: fixed;
+  border-collapse: collapse;
+  font-size: 11px;
+}
+
+.hoursTable th,
+.hoursTable td{
+  border: 1px solid #aaa;
+  position: relative;
+  padding: 2rem 1;
+  text-align: center;
+  min-width: calc(var(--size) * 1em);
+}
+.hoursTable th {
+  white-space: normal;
+  padding: 1rem 0;
+}
+
+
+.hoursTable .Work {
+  background: rgb(70, 86, 255);
+  position: relative;
+  text-align: center;
+  padding: 0.3rem;
+  height: 1.5rem;
+  cursor: pointer;
+  left: calc(var(--from) * var(--size) * 1em);
+  width: calc((var(--to) - var(--from)) * var(--size) * 1em);
+}
+
+
+.hoursTable .braek  {
+  position: absolute;
+  background: rgb(255, 255, 255);
+  border: 1px solid #595757;
+  word-wrap: break-word;    
+  padding: 0.3rem;
+  top: 0.75rem;
+  height: 1.5rem;
+  z-index: 9999;
+  text-align: center;
+  cursor: pointer;
+  left: calc(var(--from) * var(--size) * 1em);
+  width: calc((var(--to) - var(--from)) * var(--size) * 1em);
+}
+
+.hoursTable .exception,
+.hoursTable .Task,
+.hoursTable .Sick,
+.hoursTable .NoShow{
+  position: absolute;
+  background: rgb(223, 28, 28);
+  word-wrap: break-word;    
+  padding: 0.3rem;
+  top: 0.75rem;
+  height: 1.5rem;
+  z-index: 9999;
+  text-align: center;
+  cursor: pointer;
+  left: calc(var(--from) * var(--size) * 1em);
+  width: calc((var(--to) - var(--from)) * var(--size) * 1em);
+}
+
+.hoursTable .DayOff{
+  position: absolute;
+  background: rgb(15, 129, 4);
+  word-wrap: break-word;    
+  padding: 0.3rem;
+  top: 0.75rem;
+  height: 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  left: calc(var(--from) * var(--size) * 1em);
+  width: calc((var(--to) - var(--from)) * var(--size) * 1em);
+}

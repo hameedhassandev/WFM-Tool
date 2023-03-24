@@ -1,34 +1,75 @@
-<p>manage-empl-appointment works!</p>
-<div class="container">
-    <form>
-        <div class="form-group">
-          <label for="exampleInputEmail1">Email address</label>
-          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-        </div>
-        <div class="form-group">
-          <label for="exampleInputPassword1">Password</label>
-          <input type="text" class="form-control" placeholder="">
-        </div>
-        <select class="form-control">
-            <option value="">Select type of day</option>
-            <option *ngFor="let d of typeOfDays" value="{{d.id}}">{{d.name}}</option>
-          </select>
+<div class="manage-appointment">
+  <div class="row">
+    <div class="col-2" >
+      <input style="font-size: 12px;" class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="search by name or department">
 
-          <div class="form-group">
-            <label for="date">Date</label>
-            <input type="date" class="form-control">
-          </div>
-          <div class="form-group">
-            <label for="from">From</label>
-            <input type="time" value="12:00" class="form-control">
-          </div>
-          <div class="form-group">
-            <label for="to" >To</label>
-            <input type="time" value="12:00" class="form-control">
-          </div>
-        
+      <div class="all-department">
+        <div *ngFor="let d of allEmpWithDep">
+          <h5 style="font-size: 15px;font-weight: bold;">{{d.name}}</h5>
       
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-</div>
+          <li style="font-size: 12px;cursor: pointer;text-decoration: underline;" *ngFor="let e of d.employees | filter:searchText" (click)="getEmployeeData(e.employeePid)">{{e.fullName}} </li>
+       
+      </div>
+      </div>
+    
+    </div>
+    <div class="col-10 main-page">
+     <div class="manage-employee">
+      <div class="employee-data">
+        name : hameed
+      </div>
+      <table class="hoursTable table table-striped">
+        <thead>
+          <tr>
+            <th>Action</th>
+            <th style="width: 90px;">Date of day</th>
+            <th>12 AM</th>
+            <th> 1 AM</th>
+            <th> 2 AM</th>
+            <th> 3 AM</th>
+            <th> 4 AM</th>
+            <th> 5 AM</th>
+            <th> 6 AM</th>
+            <th> 7 AM</th>
+            <th> 8 AM</th>
+            <th> 9 AM</th>
+            <th>10 AM</th>
+            <th>11 AM</th>
+            <th>12 PM</th>
+            <th> 1 PM</th>
+            <th> 2 PM</th>
+            <th> 3 PM</th>
+            <th> 4 PM</th>
+            <th> 5 PM</th>
+            <th> 6 PM</th>
+            <th> 7 PM</th>
+            <th> 8 PM</th>
+            <th> 9 PM</th>
+            <th>10 PM</th>
+            <th>11 PM</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let a of allAppointment">
+            <td style="padding: 6px;"><button class="btn btn-primary btn-sm ">+</button></td>
+            <td>{{a.appointMentDate | date: "dd-MM-yyyy"}}</td>
+            <td colspan="24">
+              <div [class]="a.typeOfDay['typeName']"style="--from:{{a.from | slice:0:2}}; --to:{{a.to ==='00:00:00' ? '24:00:00' : a.to | slice:0:2}}">
+                <p style="color: white;float: left;font-size: 10px;">{{a.typeOfDay['typeName']}}</p>
+              </div>
+              <div class="braek"  *ngFor="let b of a.breaks"  style="--from:{{b.from | slice:0:2}}.{{b.from | slice:3:4}}; --to:{{b.to | slice:0:2}}.{{b.to | slice:3:4}}">
+              
+              </div>
 
+              <div class="exception" *ngFor="let ex of a.exceptions" style="--from:{{ex.from | slice:0:2}}.{{ex.from | slice:3:4}}; --to:{{ex.to | slice:0:2}}.{{ex.to | slice:3:4}}">
+              </div>
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+      
+     </div>
+    </div>
+  </div>
+</div>

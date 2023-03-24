@@ -2,52 +2,29 @@
   margin: auto;
   width: 100%;
 }
-.nav_item{
-  list-style-type: none;
-  margin: 0;
-  padding: 10px;
-  background-color: rgb(49, 141, 227);
-  overflow: hidden;
-}
 
-li {
-  float: left;
- 
-}
-
-.li a {
-  display: block;
-  padding: 8px;
-}
 .hoursTable {
   --size: 4.2;
   table-layout: fixed;
   border-collapse: collapse;
   font-size: 0.8rem;
+  
 }
 
 .hoursTable th,
 .hoursTable td{
   border: 1px solid #aaa;
   position: relative;
+  padding: 2rem 1;
   min-width: calc(var(--size) * 1em);
 }
 
 
 .hoursTable th {
-  white-space: nowrap;
+  white-space: pre;
   padding: 1rem 0;
 }
 
-.hoursTable .label {
-  position: relative;
-  background: #0bf;
-  padding: 0.5rem 0;
-  text-align: center;
-  height: 2rem;
-  left: calc(var(--from) * var(--size) * 1em);
-  width: calc((var(--to) - var(--from)) * var(--size) * 1em);
-}
 
 .hoursTable .label2 {
   border: 1px solid#969393;
@@ -55,7 +32,7 @@ li {
   position: relative;
   text-align: center;
   top: 0.1rem;
-  height: 2.4rem;
+  height: 2.1rem;
   cursor: pointer;
   left: calc(var(--from) * var(--size) * 1em);
   width: calc((var(--to) - var(--from)) * var(--size) * 1em);
@@ -87,26 +64,15 @@ li {
   }
  
 
-.hoursTable .braek {
-    position: absolute;
-    word-wrap: break-word;    
-    top:0.5rem;
-    z-index: 1000;
-    background: rgb(6, 231, 137);
-    padding: 0.5rem 0;
-    text-align: center;
-    height: 2rem;
-    left: calc(var(--from) * var(--size) * 1em);
-    width: calc((var(--to) - var(--from)) * var(--size) * 1em);
-  }
+
 
   .hoursTable .braek2 {
     position: absolute;
     border: 1px solid#969393;
     background: rgb(255, 255, 255);
     word-wrap: break-word;    
-    top: 0.5rem;
-    height: 2.4rem;
+    top: 0.65rem;
+    height: 2.1rem;
     z-index: 1000;
     text-align: center;
     cursor: pointer;
@@ -119,9 +85,19 @@ li {
     background: #b5b3b3;
     border: none;
   }
-
   #typOfDay{
     text-align: left;
-    margin-left: 2px;
-    margin-top: 2px;
+    font-size: 9px;
   }
+#next-prev{
+  float: right;
+}
+.nav-page{
+  list-style-type: none;
+  margin: 0;
+  padding: 5px;
+  background-color: rgb(47, 122, 208);
+  overflow: hidden;
+}
+
+  

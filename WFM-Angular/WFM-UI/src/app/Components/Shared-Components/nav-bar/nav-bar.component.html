@@ -1,0 +1,17 @@
+<ul class="nav_item">
+    <li><a routerLinkActive="active"  routerLink="/employee-scheduale" class="btn btn-success btn-sm mr-sm-2">Schedule </a></li>
+    <li><a routerLink="/my-exception" class="btn btn-secondary btn-sm mr-sm-2">My Exceptions</a></li>
+    <li><a routerLink="/create-exception" class="btn btn-warning btn-sm mr-sm-2">Create Exception</a></li>
+    <li><a routerLink="/find-or-dispute-exception" class="btn btn-danger btn-sm   mr-sm-2">Find or Dispute Exception</a></li>
+    <li id="logout" [matMenuTriggerFor]="menu">
+      <a  style="cursor: pointer;color: white;">
+      Hameed Hassan Mohamed</a>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item >
+            Logout
+        </button>
+    </mat-menu>
+    </li>
+    <!-- <li class="page-item"><a class="page-link mr-sm-2" href="#">Prev</a></li>
+    <li class="page-item"><a class="page-link mr-sm-2" href="#">Next</a></li> -->
+  </ul>

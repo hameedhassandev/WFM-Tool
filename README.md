@@ -1,9 +1,10 @@
 # WFM 
 Workforce management (WFM) system that use to manage employees dates and make them exception using .NET core API and Angular
 # screenshots
-![mysc](https://user-images.githubusercontent.com/57669085/226105747-2d96883c-3b1c-428b-aa82-386ff0da5043.PNG)
+![w1](https://user-images.githubusercontent.com/57669085/226918371-7ae4a75c-638f-46a6-9339-4315bb3cbd47.PNG)
+![w2](https://user-images.githubusercontent.com/57669085/227613826-158da6e9-8722-47dd-8eed-4101b495a1f1.PNG)
 
-![createEx](https://user-images.githubusercontent.com/57669085/225904645-cd9ab7f1-4701-4672-b336-0017b940a11a.PNG)
-![empScd1](https://user-images.githubusercontent.com/57669085/225904667-25d20695-6b5b-4a1a-af84-e033cd16bded.PNG)
-![createExc](https://user-images.githubusercontent.com/57669085/225904679-1b1353f6-aab9-407a-a4ed-fb98a59572df.PNG)
-![tl1](https://user-images.githubusercontent.com/57669085/225904686-c5a4c5fe-4ad7-437e-bf3c-0790c609ef10.PNG)
+![w3](https://user-images.githubusercontent.com/57669085/226918398-d29c13a0-2fb9-43cc-a588-968649005bd3.PNG)
+![w4](https://user-images.githubusercontent.com/57669085/226918413-fe4624ef-d22a-459a-8805-6a553fdbc42b.PNG)
+![w5](https://user-images.githubusercontent.com/57669085/226918426-46e70b02-3cc8-490b-bea6-21e91016f3e0.PNG)
+![w6](https://user-images.githubusercontent.com/57669085/227613839-b45942b1-c9b0-4c76-aaf4-8d14dccd815f.PNG)

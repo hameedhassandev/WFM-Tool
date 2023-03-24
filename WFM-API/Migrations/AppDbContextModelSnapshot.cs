@@ -169,7 +169,7 @@ namespace WFM_API.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Department");
+                    b.ToTable("Department", (string)null);
                 });
 
             modelBuilder.Entity("WFM_API.Models.EmpBreak", b =>
@@ -193,7 +193,7 @@ namespace WFM_API.Migrations
 
                     b.HasIndex("EmployeeAppointmentId");
 
-                    b.ToTable("EmpBreak");
+                    b.ToTable("EmpBreak", (string)null);
                 });
 
             modelBuilder.Entity("WFM_API.Models.EmpException", b =>
@@ -242,7 +242,7 @@ namespace WFM_API.Migrations
 
                     b.HasIndex("ExceptionTypeId");
 
-                    b.ToTable("Exceptions");
+                    b.ToTable("Exceptions", (string)null);
                 });
 
             modelBuilder.Entity("WFM_API.Models.EmployeeAppointment", b =>
@@ -275,7 +275,7 @@ namespace WFM_API.Migrations
 
                     b.HasIndex("TypeOfDayId");
 
-                    b.ToTable("EmployeeAppointments");
+                    b.ToTable("EmployeeAppointments", (string)null);
                 });
 
             modelBuilder.Entity("WFM_API.Models.ExceptionComment", b =>
@@ -301,7 +301,7 @@ namespace WFM_API.Migrations
 
                     b.HasIndex("EmpExceptionId");
 
-                    b.ToTable("ExceptionComment");
+                    b.ToTable("ExceptionComment", (string)null);
                 });
 
             modelBuilder.Entity("WFM_API.Models.ExceptionStatus", b =>
@@ -318,7 +318,7 @@ namespace WFM_API.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ExceptionStatus");
+                    b.ToTable("ExceptionStatus", (string)null);
                 });
 
             modelBuilder.Entity("WFM_API.Models.ExceptionType", b =>
@@ -335,7 +335,7 @@ namespace WFM_API.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ExceptionType");
+                    b.ToTable("ExceptionType", (string)null);
                 });
 
             modelBuilder.Entity("WFM_API.Models.Identity.AppUser", b =>
@@ -426,7 +426,7 @@ namespace WFM_API.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("TypeOfDay");
+                    b.ToTable("TypeOfDay", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

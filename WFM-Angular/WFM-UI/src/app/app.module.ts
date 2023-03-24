@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {MatMenuModule} from '@angular/material/menu';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './Components/login/login.component';
@@ -13,6 +15,12 @@ import { MyExceptionsComponent } from './Components/Employee-Components/my-excep
 import { CreateExceptionComponent } from './Components/Employee-Components/create-exception/create-exception.component';
 import { FindOrdisputeExceptionComponent } from './Components/Employee-Components/find-ordispute-exception/find-ordispute-exception.component';
 import { EmployeesExceptionsComponent } from './Components/Team-Leaders-Component/employees-exceptions/employees-exceptions.component';
+import { NavBarComponent } from './Components/Shared-Components/nav-bar/nav-bar.component';
+import { HomeComponent } from './Components/Employee-Components/home/home.component';
+import { PageNotFoundComponent } from './Components/Shared-Components/page-not-found/page-not-found.component';
+import { CreateEmployeeComponent } from './Components/WFM-Components/create-employee/create-employee.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+
 
 @NgModule({
   declarations: [
@@ -25,6 +33,11 @@ import { EmployeesExceptionsComponent } from './Components/Team-Leaders-Componen
     CreateExceptionComponent,
     FindOrdisputeExceptionComponent,
     EmployeesExceptionsComponent,
+    NavBarComponent,
+    HomeComponent,
+    PageNotFoundComponent,
+    CreateEmployeeComponent,
+ 
     
   ],
   imports: [
@@ -34,6 +47,9 @@ import { EmployeesExceptionsComponent } from './Components/Team-Leaders-Componen
     MatDialogModule,
     FormsModule,
     ReactiveFormsModule,
+    MatMenuModule,
+    BrowserAnimationsModule,
+    Ng2SearchPipeModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
