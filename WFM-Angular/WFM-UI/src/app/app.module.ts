@@ -20,6 +20,8 @@ import { HomeComponent } from './Components/Employee-Components/home/home.compon
 import { PageNotFoundComponent } from './Components/Shared-Components/page-not-found/page-not-found.component';
 import { CreateEmployeeComponent } from './Components/WFM-Components/create-employee/create-employee.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { WfmHeaderComponent } from './Components/WFM-Components/wfm-header/wfm-header.component';
+import { WfmHomeComponent } from './Components/WFM-Components/wfm-home/wfm-home.component';
 
 
 @NgModule({
@@ -37,6 +39,8 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     HomeComponent,
     PageNotFoundComponent,
     CreateEmployeeComponent,
+    WfmHeaderComponent,
+    WfmHomeComponent,
  
     
   ],

@@ -1,7 +1,9 @@
 
 <ul class="nav-page">
-  <li id="next-prev"><a class="btn btn-light btn-sm mr-sm-2">&#8250;</a></li>
-  <li id="next-prev"><a class="btn btn-light btn-sm mr-sm-2">&#8249;</a></li>
+  <li id="next-prev"><a  class="btn btn-light mr-sm-2">&#8250;</a></li>
+  <li id="next-prev"><a class="btn btn-light  mr-sm-2">&#8249;</a></li>
+  <li id="my-schedual"><a>My Schedual</a></li>
+
 </ul>
 
 <div class="schedual_body">
@@ -37,7 +39,7 @@
         </thead>
         <tbody>
           <tr *ngFor="let emp of allAppointment">
-            <th>{{emp.appointMentDate | date: "dd-MM-yyyy"}}</th>
+            <th>{{emp.appointMentDate | date}}</th>
             <td colspan=24>
               <div class="label2" style="--from:{{emp.from | slice:0:2}}; --to:{{emp.to ==='00:00:00' ? '24:00:00' : emp.to | slice:0:2}}" (click)="schedualDetails()">
           

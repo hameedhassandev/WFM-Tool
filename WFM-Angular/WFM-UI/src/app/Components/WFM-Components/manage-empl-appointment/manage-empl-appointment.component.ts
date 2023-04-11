@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EmployeeAppointmentService } from 'src/app/Services/employee-appointment.service';
+import { EmployeeService } from 'src/app/Services/employee.service';
 import { WFMService } from 'src/app/Services/wfm.service';
 
 @Component({
@@ -11,17 +12,15 @@ export class ManageEmplAppointmentComponent implements OnInit {
   allEmpWithDep:any
   searchText:any
   allAppointment:any
-  constructor(private _wfmService : WFMService,private _appointmentServ : EmployeeAppointmentService) {
+  employee:any
+  constructor(private _wfmService : WFMService,
+    private _appointmentServ : EmployeeAppointmentService, private _empService:EmployeeService) {
   }
   ngOnInit(): void {
     this.getAllEmployeeWithDepartment()
   }
 
-  typeOfDays = [{id:2,name:"Anuual"},
-                {id:3,name:"Work"},
-                {id:4,name:"Day Off"}]
-
-
+  
 
 getAllEmployeeWithDepartment(){
   this._wfmService.GetAllDepartmentsWithEmployees().subscribe({
@@ -45,4 +44,15 @@ getEmployeeData(empId:string){
       console.log(err)
     }
   })}
+
+  getEmployeeById(empId:string){
+    this._empService.getEmpById(empId).subscribe({
+      next:(res)=>{
+        this.employee = res  
+        console.log(this.employee)
+      },
+      error:(err)=>{
+        console.log(err)
+      }
+    })}
 }

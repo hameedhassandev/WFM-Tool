@@ -1,13 +1,14 @@
 <div class="manage-appointment">
   <div class="row">
     <div class="col-2" >
-      <input style="font-size: 12px;" class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="search by name or department">
 
       <div class="all-department">
+      <input style="font-size: 12px;margin-bottom: 10px;" class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="search by name or department">
+
         <div *ngFor="let d of allEmpWithDep">
           <h5 style="font-size: 15px;font-weight: bold;">{{d.name}}</h5>
       
-          <li style="font-size: 12px;cursor: pointer;text-decoration: underline;" *ngFor="let e of d.employees | filter:searchText" (click)="getEmployeeData(e.employeePid)">{{e.fullName}} </li>
+          <li style="font-size: 12px;cursor: pointer;text-decoration: underline;" *ngFor="let e of d.employees | filter:searchText" (click)="getEmployeeData(e.employeePid)" >{{e.fullName}} </li>
        
       </div>
       </div>
@@ -15,9 +16,7 @@
     </div>
     <div class="col-10 main-page">
      <div class="manage-employee">
-      <div class="employee-data">
-        name : hameed
-      </div>
+     
       <table class="hoursTable table table-striped">
         <thead>
           <tr>
@@ -50,8 +49,10 @@
           </tr>
         </thead>
         <tbody>
+          
           <tr *ngFor="let a of allAppointment">
-            <td style="padding: 6px;"><button class="btn btn-primary btn-sm ">+</button></td>
+          
+            <td style="padding: 6px;"><button class="btn btn-dark btn-sm ">+</button></td>
             <td>{{a.appointMentDate | date: "dd-MM-yyyy"}}</td>
             <td colspan="24">
               <div [class]="a.typeOfDay['typeName']"style="--from:{{a.from | slice:0:2}}; --to:{{a.to ==='00:00:00' ? '24:00:00' : a.to | slice:0:2}}">
@@ -73,3 +74,5 @@
     </div>
   </div>
 </div>
+
+

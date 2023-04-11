@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Numerics;
+using System.Text.Json.Serialization;
 using WFM_API.Models.Identity;
 
 namespace WFM_API.Models
@@ -10,6 +11,7 @@ namespace WFM_API.Models
         public int Id { get; set; }
         [Required]
         public string Name { get; set; }
+        [JsonIgnore]
         public ICollection<AppUser>? Employees { get; set; }
 
     }

@@ -26,6 +26,10 @@
   width: 100%;
 }
 
+.create-new{
+  background-color: #595757;
+}
+
 .hoursTable{
   --size: 3.68;
   table-layout: fixed;

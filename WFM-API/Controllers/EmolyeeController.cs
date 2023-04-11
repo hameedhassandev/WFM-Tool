@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -77,6 +78,14 @@ namespace WFM_API.Controllers
             if(!roles.Any()) NotFound();
 
             return Ok(roles);
+        }
+
+        [HttpGet("GetEmployeeById")]
+        public async Task<IActionResult> GetEmployeeById(string employeeId)
+        {
+            var employee = await _userMnager.Users.Include(d => d.Department).FirstOrDefaultAsync(e=>e.Id == employeeId);
+            var results = _mapper.Map<EmployeeDto>(employee);
+            return Ok(results);
         }
     }
 }

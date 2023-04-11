@@ -25,4 +25,8 @@ export class EmployeeService {
     return this._http.get<User[]>(`${this.employee}/GetAllTeamLeaders`);
   }
 
+  getEmpById(empId:string):Observable<User>{
+    return this._http.get<User>(`${this.employee}/GetEmployeeById?employeeId=${empId}`);
+  }
+
 }

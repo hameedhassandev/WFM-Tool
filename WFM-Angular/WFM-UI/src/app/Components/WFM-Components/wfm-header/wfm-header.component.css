@@ -11,19 +11,22 @@
    
   }
   
-  #logout{
-    float: right;
-  }
-  
   .li a {
     display: block;
     padding: 8px;
   }
 
   ul li a{
-    color: #fff;
+    color: white;
     text-decoration: none;
+    font-size: 14px;
   }
+
+  #logout{
+    float: right;
+  }
+  
+
 
 
 
