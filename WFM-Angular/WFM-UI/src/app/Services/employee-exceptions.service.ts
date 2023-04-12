@@ -19,6 +19,10 @@ export class EmployeeExceptionsService {
     return this._http.get<Excption[]>(`${this.exceptions}/GetAllEmpExceptoins?employeePID=${employeeId}`);
   }
 
+  getAllEmployeeException():Observable<Excption[]>{
+    return this._http.get<Excption[]>(`${this.exceptions}/GetAllEmployeeExceptions`);
+  }
+
   getAllExceptionsForTl(teamLeaderId:string):Observable<Excption[]>{
     return this._http.get<Excption[]>(`${this.exceptions}/GetExceptonsForTL?teamLeaderId=${teamLeaderId}`);
   }

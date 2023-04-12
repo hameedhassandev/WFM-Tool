@@ -1,0 +1,16 @@
+.all_employee_exception{
+    margin: auto;
+    text-align: center;
+    width: 90%;
+    margin-top: 30px;
+}
+.table th,
+.table td{
+    position: relative;
+    font-size: 14px;
+}
+#no_data{
+    text-align: center;
+    padding: 5px;
+    color: red;
+}

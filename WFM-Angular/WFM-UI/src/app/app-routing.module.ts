@@ -12,6 +12,7 @@ import { PageNotFoundComponent } from './Components/Shared-Components/page-not-f
 import { WfmHeaderComponent } from './Components/WFM-Components/wfm-header/wfm-header.component';
 import { WfmHomeComponent } from './Components/WFM-Components/wfm-home/wfm-home.component';
 import { CreateEmployeeComponent } from './Components/WFM-Components/create-employee/create-employee.component';
+import { AllExceptionsComponent } from './Components/WFM-Components/all-exceptions/all-exceptions.component';
 
 const routes: Routes = [
   {path:'login', component:LoginComponent},
@@ -22,6 +23,7 @@ const routes: Routes = [
   {path: 'wfm', component: WfmHomeComponent, children:[
   {path:'manage-appointments', component:ManageEmplAppointmentComponent},
   {path:'create-employee', component:CreateEmployeeComponent},
+  {path:'all-exceptions', component:AllExceptionsComponent},
   {path: '**', redirectTo:'/wfm/manage-appointments', pathMatch: 'full'},
 
   ]},

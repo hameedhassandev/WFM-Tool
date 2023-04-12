@@ -180,6 +180,19 @@ namespace WFM_API.Controllers
             return Ok(except);
         }
 
+        [HttpGet("GetAllEmployeeExceptions")]
+        public async Task<IActionResult> GetAllEmployeeExceptions()
+        {
+           
+
+            var allEmpExceptions = await _unitOfWork.Exceptions.FindWithIncludes(new[] { "ExceptionStatus", "ExceptionComments", "ExceptionType", "Manager", "User" });
+
+            var results = _mapper.Map<IEnumerable<EmployeeExceptionDto>>(allEmpExceptions);
+
+            return Ok(results);
+        }
+
+
         [HttpGet("GetAllEmpExceptoins")]
         public async Task<IActionResult> GetAllEmpExceptoins(string employeePID)
         {

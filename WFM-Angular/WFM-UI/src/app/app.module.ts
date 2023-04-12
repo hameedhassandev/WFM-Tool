@@ -9,7 +9,7 @@ import { LoginComponent } from './Components/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { EmployeeScheduleComponent } from './Components/Employee-Components/employee-schedule/employee-schedule.component';
 import { ManageEmplAppointmentComponent } from './Components/WFM-Components/manage-empl-appointment/manage-empl-appointment.component';
-import {MatDialogModule} from '@angular/material/dialog';
+import {MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule} from '@angular/material/dialog';
 import { SchedualeDetailsComponent } from './Components/Employee-Components/scheduale-details/scheduale-details.component';
 import { MyExceptionsComponent } from './Components/Employee-Components/my-exceptions/my-exceptions.component';
 import { CreateExceptionComponent } from './Components/Employee-Components/create-exception/create-exception.component';
@@ -22,6 +22,7 @@ import { CreateEmployeeComponent } from './Components/WFM-Components/create-empl
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { WfmHeaderComponent } from './Components/WFM-Components/wfm-header/wfm-header.component';
 import { WfmHomeComponent } from './Components/WFM-Components/wfm-home/wfm-home.component';
+import { AllExceptionsComponent } from './Components/WFM-Components/all-exceptions/all-exceptions.component';
 
 
 @NgModule({
@@ -41,6 +42,7 @@ import { WfmHomeComponent } from './Components/WFM-Components/wfm-home/wfm-home.
     CreateEmployeeComponent,
     WfmHeaderComponent,
     WfmHomeComponent,
+    AllExceptionsComponent,
  
     
   ],
@@ -55,7 +57,9 @@ import { WfmHomeComponent } from './Components/WFM-Components/wfm-home/wfm-home.
     BrowserAnimationsModule,
     Ng2SearchPipeModule,
   ],
-  providers: [],
+  providers: [
+    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

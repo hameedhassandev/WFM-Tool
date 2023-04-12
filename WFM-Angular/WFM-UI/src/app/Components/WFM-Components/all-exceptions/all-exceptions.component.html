@@ -1,0 +1,61 @@
+
+<div class="all_employee_exception">
+    <form class="form-inline">
+        <div class="form-group">
+            <input type="date" class="form-control mb-3 mr-sm-2" formControlName="filterDate" required>
+        </div>
+        <div class="form-group">
+            <select  class="form-control mb-3 mr-sm-2">
+              <option value="">Select Department</option>
+              <option value="">Select Department</option>
+              <option value="">Select Department</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <select  class="form-control mb-3 mr-sm-2">
+              <option value="">Exception Status</option>
+              <option value="">Waiting for wfm</option>
+              <option value="">Approved</option>
+              <option value="">Rejected</option>
+              <option value="">Dispute</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-warning mb-3 mr-sm-2"  >Filter</button>
+        <a class="btn btn-info mb-3"  >Clear Filter</a>
+    </form>
+<table class="table table-bordered table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">ExcId#</th>
+        <th scope="col">Creator</th>
+        <th scope="col">Dep.</th>
+        <th scope="col">Date</th>
+        <th scope="col">From</th>
+        <th scope="col">To</th>
+        <th scope="col">Exception Type</th>
+        <th scope="col">Approved By</th>
+        <th scope="col">Status</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody >
+      <tr *ngFor="let ex of allEmpExceptions">
+        <th scope="row">{{ex.id}}</th>
+        <td>{{ex.user['fullName']}}</td>
+        <td>Customer Care</td>
+        <td>{{ex.exceptionDate}}</td>
+        <td>{{ex.from}}</td>
+        <td>{{ex.to}}</td>
+        <td>{{ex.exceptionType['exceptionName']}}</td>
+        <td>{{ex.manager['fullName']}}</td>
+        <td>{{ex.exceptionStatus['status']}}</td>
+      <td><a href="#">Action</a></td>
+      </tr>
+    
+    </tbody>
+</table>
+<p *ngIf="isEmpty" id="no_data">{{filterMsg}}</p>
+
+
+</div>

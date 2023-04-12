@@ -8,7 +8,8 @@ namespace WFM_API.Profiles
         public EmployeeProfile()
         {
             CreateMap<AppUser, DTOS.EmployeeDto>()
-            .ForMember(d => d.EmployeePid, a => a.MapFrom(s => s.Id));
+            .ForMember(d => d.EmployeePid, a => a.MapFrom(s => s.Id))
+            .ForMember(d=>d.DepartmentName, e=>e.MapFrom(d=>d.Department.Name));
         }
     }
 }

@@ -17,10 +17,10 @@
 }
 
 
-.main-page{
+/* .main-page{
   border: 2px solid #ddd;
  
-}
+} */
 
 .manage-employee{
   width: 100%;
@@ -31,7 +31,7 @@
 }
 
 .hoursTable{
-  --size: 3.68;
+  --size: 3.7;
   table-layout: fixed;
   border-collapse: collapse;
   font-size: 11px;
@@ -51,22 +51,16 @@
 }
 
 
-.hoursTable .Work {
-  background: rgb(70, 86, 255);
-  position: relative;
-  text-align: center;
-  padding: 0.3rem;
-  height: 1.5rem;
-  cursor: pointer;
-  left: calc(var(--from) * var(--size) * 1em);
-  width: calc((var(--to) - var(--from)) * var(--size) * 1em);
-}
-
-
-.hoursTable .braek  {
+.hoursTable .exception,
+.hoursTable .Task,
+.hoursTable .Sick,
+.hoursTable .NoShow,
+.hoursTable .Annual,
+.hoursTable .DayOff,
+.hoursTable .Work,
+.hoursTable .Vacation,
+.hoursTable .braek {
   position: absolute;
-  background: rgb(255, 255, 255);
-  border: 1px solid #595757;
   word-wrap: break-word;    
   padding: 0.3rem;
   top: 0.75rem;
@@ -77,33 +71,32 @@
   left: calc(var(--from) * var(--size) * 1em);
   width: calc((var(--to) - var(--from)) * var(--size) * 1em);
 }
+
 
 .hoursTable .exception,
 .hoursTable .Task,
 .hoursTable .Sick,
 .hoursTable .NoShow{
-  position: absolute;
   background: rgb(223, 28, 28);
-  word-wrap: break-word;    
-  padding: 0.3rem;
-  top: 0.75rem;
-  height: 1.5rem;
-  z-index: 9999;
-  text-align: center;
-  cursor: pointer;
-  left: calc(var(--from) * var(--size) * 1em);
-  width: calc((var(--to) - var(--from)) * var(--size) * 1em);
+}
+
+.hoursTable .Annual{
+  background: rgb(156, 0, 130);
 }
 
 .hoursTable .DayOff{
-  position: absolute;
   background: rgb(15, 129, 4);
-  word-wrap: break-word;    
-  padding: 0.3rem;
-  top: 0.75rem;
-  height: 1.5rem;
-  text-align: center;
-  cursor: pointer;
-  left: calc(var(--from) * var(--size) * 1em);
-  width: calc((var(--to) - var(--from)) * var(--size) * 1em);
+}
+
+.hoursTable .Work {
+  background: rgb(70, 86, 255);
+
+}
+
+.hoursTable .braek  {
+  background: rgb(133, 133, 132);
+}
+
+.hoursTable .Vacation  {
+  background: rgb(5, 149, 168);
 }

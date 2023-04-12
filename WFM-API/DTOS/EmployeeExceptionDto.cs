@@ -16,9 +16,5 @@ namespace WFM_API.DTOS
         public ExceptionStatus? ExceptionStatus { get; set; }
         public ExceptionType? ExceptionType { get; set; }
 
-
-
-         //public ICollection<ExceptionCommentDto>? exceptionComments { get; set; }
-
     }
 }
