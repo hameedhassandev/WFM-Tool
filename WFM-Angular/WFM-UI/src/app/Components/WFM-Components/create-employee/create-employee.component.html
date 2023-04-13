@@ -1,45 +1,73 @@
 <div class="container mt-4" style="width: 40%;margin: auto;" >
     <h2 class="text-center mb-4">Add New Employee</h2>
-    <form autocomplete="off">
+    <!-- <p>{{createEmployee.value | json}}</p> -->
+    <form [formGroup]="createEmployee" autocomplete="off">
 
         <div class="form-group">
             <label for="fullName">Full Name</label>
-            <input type="text" class="form-control" id="inputAddress" placeholder="Full Name">
+            <input type="text" class="form-control"
+            placeholder="Full Name"
+            formControlName="fullName">
+          <small class="text-danger" *ngIf="!createEmployee.controls['fullName'].valid && 
+          createEmployee.controls['fullName']?.touched">Full Name is required.</small>
           </div>
-
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="userName">Username</label>
-            <input type="text" class="form-control"  placeholder="Username">
+            <input type="text" class="form-control" 
+             placeholder="Username"
+             formControlName="userName">
+             <small class="text-danger" *ngIf="!createEmployee.controls['userName'].valid && 
+             createEmployee.controls['userName']?.touched">Username is required.</small>
           </div>
           <div class="form-group col-md-6">
             <label for="password">Password</label>
-            <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
+            <input type="password" class="form-control" 
+            placeholder="Password"
+            formControlName="password">
+            <small class="text-danger" *ngIf="!createEmployee.controls['password'].valid && 
+            createEmployee.controls['password']?.touched">Password is required.</small>
           </div>
         </div>
        
         <div class="form-group">
           <label for="phoneNo">Phone Number</label>
-          <input type="text" class="form-control"  placeholder="Phone Number">
+          <input type="text" class="form-control"  
+          placeholder="Phone Number"
+          formControlName="phoneNo">
+          <small class="text-danger" *ngIf="!createEmployee.controls['phoneNo'].valid && 
+          createEmployee.controls['phoneNo']?.touched">Phone number is required.</small>
         </div>
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="inputState">Department</label>
-            <select id="inputState" class="form-control">
+            <select id="inputState" class="form-control" formControlName="departmentId"
+            (change)="validateSelectList(createEmployee.controls['departmentId'].value)">
               <option value="">Select Department</option>
               <option *ngFor="let d of departments" [value]="d.id">{{d.name}}</option>
             </select>
+            <small *ngIf="selectValurError && createEmployee.controls['departmentId'].touched" class="text-danger">
+              Department is required.
+            </small>
           </div>
           <div class="form-group col-md-6">
             <label for="inputState">Role</label>
-            <select id="inputState" class="form-control">
+            <select id="inputState" class="form-control" formControlName="roleName"
+            (change)="validateSelectList(createEmployee.controls['roleName'].value)">
               <option value="">Select Role</option>
-              <option *ngFor="let role of roles" [value]="role.id">{{role.name}}</option>
+              <option *ngFor="let role of roles" [value]="role.name">{{role.name}}</option>
             </select>
+            <small *ngIf="selectValurError && createEmployee.controls['roleName'].touched" class="text-danger">
+              Role is required.
+            </small>
           </div>
          
         </div>
 
-        <button type="submit" class="btn btn-primary col-12 mt-2">Add Employee</button>
+        <button type="submit" class="btn btn-primary col-12 mt-2"[disabled]="!createEmployee.valid"
+        (click)="addEmployee()">Add Employee</button>
+        <h6 class="text-danger" id="res_massage">
+          {{responseMsg}}
+         </h6>
       </form>
 </div>

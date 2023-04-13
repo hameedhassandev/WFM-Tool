@@ -13,6 +13,7 @@ export class ManageEmplAppointmentComponent implements OnInit {
   searchText:any
   allAppointment:any
   employee:any
+  noAppointment = false
   constructor(private _wfmService : WFMService,
     private _appointmentServ : EmployeeAppointmentService, private _empService:EmployeeService) {
   }
@@ -35,10 +36,17 @@ getAllEmployeeWithDepartment(){
 }
 
 getEmployeeData(empId:string){
+  this.noAppointment = false
   this._appointmentServ.getAllEmployeeApointments(empId).subscribe({
     next:(res)=>{
       this.allAppointment = res  
+      if(this.allAppointment.length === 0){
+        this.noAppointment = true
+        console.log('data appo: ' +this.noAppointment)
+      }
       console.log(this.allAppointment)
+      this.getEmployeeById(empId);
+
     },
     error:(err)=>{
       console.log(err)
@@ -55,4 +63,12 @@ getEmployeeData(empId:string){
         console.log(err)
       }
     })}
+
+
+  addNewAppointment(employeePid:string){
+    alert('employeePid = ' + employeePid)
+  }
+
+
+
 }

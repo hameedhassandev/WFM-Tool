@@ -27,9 +27,9 @@ export class EmployeeScheduleComponent implements OnInit {
     console.log(event.target.value);
   }
 
-
+ 
   getAllApppontment(employeeId:string){
-    this._appointmentServ.getAllEmployeeApointments(employeeId).subscribe({
+    this._appointmentServ.getAllEmployeeApointmentsPaging(employeeId,100,0).subscribe({
       next:(res)=>{
         this.allAppointment = res  
         console.log(this.allAppointment)

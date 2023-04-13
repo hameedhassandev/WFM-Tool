@@ -29,4 +29,8 @@ export class EmployeeService {
     return this._http.get<User>(`${this.employee}/GetEmployeeById?employeeId=${empId}`);
   }
 
+  createEmployee(data:FormData){
+    return this._http.post<any>(`${this.employee}/AddEmployee`,data)
+  }
+
 }

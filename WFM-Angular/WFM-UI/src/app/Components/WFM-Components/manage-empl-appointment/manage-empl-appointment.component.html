@@ -1,22 +1,48 @@
 <div class="manage-appointment">
   <div class="row">
     <div class="col-2" >
-
+      <!-- department with eployee start  -->
       <div class="all-department">
       <input style="font-size: 12px;margin-bottom: 10px;" class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="search by name or department">
-
         <div *ngFor="let d of allEmpWithDep">
-          <h5 style="font-size: 15px;font-weight: bold;">{{d.name}}</h5>
+          <h5 style="font-size: 15px;font-weight: bold;cursor: pointer;">{{d.name}}</h5>
+          <div>
+            <li  style="font-size: 12px;cursor: pointer;text-decoration: underline;" *ngFor="let e of d.employees | filter:searchText" (click)="getEmployeeData(e.employeePid)" >{{e.fullName}} </li>
+         </div>
+  
+        </div>
+      </div>
       
-          <li style="font-size: 12px;cursor: pointer;text-decoration: underline;" *ngFor="let e of d.employees | filter:searchText" (click)="getEmployeeData(e.employeePid)" >{{e.fullName}} </li>
-       
-      </div>
-      </div>
-    
     </div>
+      <!-- department with eployee end  -->
+
+      
     <div class="col-10 main-page">
+
+           <!-- show employee data start  -->
+
+     <div class="employee-info">
+      <form class="form-inline" *ngIf="employee">
+        <div class="form-group">
+            <input type="text" class="form-control mb-3 mr-sm-2" value="{{employee.fullName}}" placeholder="Fullname" readonly>
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control mb-3 mr-sm-2" value="Username: {{employee.userName}}" placeholder="Username" readonly>
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control mb-3 mr-sm-2" value="Dep.: {{employee.departmentName}}" placeholder="Department" readonly>
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control mb-3 mr-sm-2" value="Role: {{employee.roles[0]}}" placeholder="Role" readonly>
+     </div>
+   
+    <button style="color: white;" class="btn btn-dark mb-3 mr-sm-2" (click)="addNewAppointment(employee.employeePid)">+ new appointment</button>
+      </form>
+    </div>
+     <!-- show employee data end  -->
      <div class="manage-employee">
-     
+
+
       <table class="hoursTable table table-striped">
         <thead>
           <tr>
@@ -67,7 +93,9 @@
           </tr>
 
         </tbody>
+
       </table>
+      <p style="text-align: center; color: red; font-weight: bold;" *ngIf="noAppointment">No appointment yet!</p>
       
      </div>
     </div>

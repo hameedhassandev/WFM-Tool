@@ -32,11 +32,28 @@ namespace WFM_API.Controllers
 
             if(emp == null) return NotFound();
 
-          //  emp.Where(x => x.Exceptions.Where(e=>e.ExceptionStatusId == (int)ExceptionStatusVal.Approved));
-           var results = _mapper.Map<IEnumerable<EmployeeAppointmentDto>>(emp);
+            emp = emp.OrderBy(e => e.AppointMentDate);
+
+            var results = _mapper.Map<IEnumerable<EmployeeAppointmentDto>>(emp);
 
            return Ok(results);
            //return Ok(emp);
+        }
+
+
+        [HttpGet("EmployeeAppointmentsPaging")]
+        public async Task<IActionResult> EmployeeAppointmentsPaging(string EmployeePID,int take,int skip)
+        {
+            var emp = await _unitOfWork.EmployeeAppointments.FindAsQueryWithPaging(e => e.EmployeePID == EmployeePID, new[] { "TypeOfDay", "Breaks", "Exceptions" }, take,skip);
+
+            if (emp == null) return NotFound();
+
+            emp = emp.OrderBy(e => e.AppointMentDate);
+
+            var results = _mapper.Map<IEnumerable<EmployeeAppointmentDto>>(emp);
+
+            return Ok(results);
+            //return Ok(emp);
         }
 
 

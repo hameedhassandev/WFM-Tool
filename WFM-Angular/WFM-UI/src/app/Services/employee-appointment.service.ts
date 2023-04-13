@@ -18,4 +18,9 @@ export class EmployeeAppointmentService {
     return this._http.get<EmployeeAppointment[]>(`${this.appointmentAPI}/EmployeeAppointments?EmployeePID=${employeeId}`);
   }
 
+  getAllEmployeeApointmentsPaging(employeeId:string,take?:number,skip?:number):Observable<EmployeeAppointment[]>{
+    return this._http.get<EmployeeAppointment[]>(`${this.appointmentAPI}/EmployeeAppointmentsPaging?EmployeePID=${employeeId}&take=${take}&skip=${skip}`);
+  }
+
+
 }

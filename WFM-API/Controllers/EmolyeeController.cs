@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using WFM_API.DTOS;
 using WFM_API.DTOS.CreateDtos;
 using WFM_API.Helpers;
+using WFM_API.Models;
 using WFM_API.Models.Identity;
 using WFM_API.Repositories;
 using WFM_API.UnitOfWork;
@@ -83,9 +84,17 @@ namespace WFM_API.Controllers
         [HttpGet("GetEmployeeById")]
         public async Task<IActionResult> GetEmployeeById(string employeeId)
         {
-            var employee = await _userMnager.Users.Include(d => d.Department).FirstOrDefaultAsync(e=>e.Id == employeeId);
-            var results = _mapper.Map<EmployeeDto>(employee);
-            return Ok(results);
+            var employee = await _userMnager.Users.Include(d => d.Department)
+               .Select(user => new
+               {
+                   EmployeePid = user.Id,
+                   FullName = user.FullName,
+                   UserName = user.UserName,
+                   DepartmentName = user.Department.Name,
+                   Roles = _userMnager.GetRolesAsync(user).Result,
+               }).FirstOrDefaultAsync(u=>u.EmployeePid == employeeId);
+           // var results = _mapper.Map<EmployeeDto>(employee);
+            return Ok(employee);
         }
     }
 }

@@ -59,6 +59,20 @@ namespace WFM_API.Services
           
         }
 
+        public async Task<IEnumerable<T>> FindAsQueryWithPaging(Expression<Func<T, bool>> criteria, string[] includes = null,int take = 0,int skip= 0)
+        {
+            IQueryable<T> query = _context.Set<T>();
+            if (includes != null)
+                foreach (var include in includes)
+                    query = query.Include(include);
+
+
+            var result = await query.Where(criteria).Take(take).Skip(skip).ToListAsync();
+            return result;
+
+        }
+
+
 
         public async Task<IEnumerable<T>> FindWithIncludes(string[] includes) 
         {
@@ -85,6 +99,7 @@ namespace WFM_API.Services
             return result;
 
         }
+
 
 
     }
