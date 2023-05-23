@@ -11,6 +11,9 @@ namespace WFM_API.DTOS.CreateDtos
         public string? CreatorPID { get; set; }
 
         [Required]
+        public string? CreatorName { get; set; }
+
+        [Required]
         public string? ApprovedByPID { get; set; }
 
         [Required]

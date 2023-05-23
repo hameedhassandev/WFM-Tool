@@ -23,6 +23,11 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { WfmHeaderComponent } from './Components/WFM-Components/wfm-header/wfm-header.component';
 import { WfmHomeComponent } from './Components/WFM-Components/wfm-home/wfm-home.component';
 import { AllExceptionsComponent } from './Components/WFM-Components/all-exceptions/all-exceptions.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { AddAppointmentFormComponent } from './Components/WFM-Components/add-appointment-form/add-appointment-form.component';
+import { ExceptionActionComponent } from './Components/WFM-Components/exception-action/exception-action.component';
 
 
 @NgModule({
@@ -43,7 +48,9 @@ import { AllExceptionsComponent } from './Components/WFM-Components/all-exceptio
     WfmHeaderComponent,
     WfmHomeComponent,
     AllExceptionsComponent,
- 
+    AddAppointmentFormComponent,
+    ExceptionActionComponent,
+    
     
   ],
   imports: [
@@ -56,9 +63,14 @@ import { AllExceptionsComponent } from './Components/WFM-Components/all-exceptio
     MatMenuModule,
     BrowserAnimationsModule,
     Ng2SearchPipeModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatFormFieldModule,
+
   ],
   providers: [
     {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}
+
   ],
   bootstrap: [AppComponent]
 })

@@ -61,6 +61,7 @@ responMassage:any
 
   createEception(){
     let creatorPID = "6403e590-a212-4b2a-9ada-b8f03b90b25f";
+     let creatorName = "Ahmed Kamel Mohamed";
     var fData = new FormData();
     fData.append('ExceptionTypeId',this.createExceptionForm.get('exceptionTypeId')?.value);
     fData.append('CreatorPID', creatorPID);
@@ -69,9 +70,12 @@ responMassage:any
     fData.append('From',this.createExceptionForm.get('from')?.value);
     fData.append('To',this.createExceptionForm.get('to')?.value);
     fData.append('ExceptionComment',this.createExceptionForm.get('exceptionComment')?.value);
+    fData.append('CreatorName',creatorName);
+
   const data ={
     ExceptionTypeId:this.createExceptionForm.get('exceptionTypeId')?.value,
     CreatorPID:creatorPID,
+    CreatorName:creatorName,
     ApprovedByPID:this.createExceptionForm.get('approvedByPID')?.value,
     ExceptionDate:this.createExceptionForm.get('exceptionDate')?.value,
     From:this.createExceptionForm.get('from')?.value,

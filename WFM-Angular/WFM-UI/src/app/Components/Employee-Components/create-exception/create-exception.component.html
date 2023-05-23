@@ -1,21 +1,22 @@
 <div class="container">
-    <div class="col-12">
-<form [formGroup]="createExceptionForm" autocomplete="off">
+  <div class="col-12">
+    <form [formGroup]="createExceptionForm" autocomplete="off">
 
 
-    <div class="form-group">
-    <label for="exceptionId">Exception Type</label>
-    <select class="form-control" (change)="getExceptionType($event)"
-    (change)="validateSelectList(createExceptionForm.controls['exceptionTypeId'].value)" formControlName="exceptionTypeId">
-        <option value="" >Exception Type</option>
-        <option *ngFor="let exc of exceptionType" [value]="exc.id">{{exc.exceptionName}}</option>
-    </select>
-    <small *ngIf="selectValurError && createExceptionForm.controls['exceptionTypeId'].touched" class="text-danger">
-      Exception Type is required.
-    </small>
-    </div>
+      <div class="form-group">
+        <label for="exceptionId">Exception Type</label>
+        <select class="form-control" (change)="getExceptionType($event)"
+          (change)="validateSelectList(createExceptionForm.controls['exceptionTypeId'].value)"
+          formControlName="exceptionTypeId">
+          <option value="">Exception Type</option>
+          <option *ngFor="let exc of exceptionType" [value]="exc.id">{{exc.exceptionName}}</option>
+        </select>
+        <small *ngIf="selectValurError && createExceptionForm.controls['exceptionTypeId'].touched" class="text-danger">
+          Exception Type is required.
+        </small>
+      </div>
 
-    <div class="form-group">
+      <div class="form-group">
         <label for="date">Date of excption</label>
         <input type="date" class="form-control" formControlName="exceptionDate">
       </div>
@@ -29,29 +30,31 @@
         <label for="to">To</label>
         <input type="time" class="form-control" formControlName="to">
       </div>
-   
-    <div class="form-group">
-    <label for="areaId">Approved By</label>
-    <select class="form-control" formControlName="approvedByPID"
-    (change)="validateSelectList(createExceptionForm.controls['approvedByPID'].value)">
-        <option value="" >Approved by</option>
-        <option *ngFor="let tl of teamLeaders" [value]="tl.employeePid">TL- {{tl.fullName}}</option>
-    </select>
-    <small *ngIf="selectValurError && createExceptionForm.controls['approvedByPID'].touched" class="text-danger">
-      Approved by is required.
-    </small>
-    </div>
 
-    <div class="form-group">
-        <label for="exampleInputEmail1">Comment</label>
-        <textarea class="form-control" placeholder="Enter comment (Optional)" formControlName="exceptionComment"></textarea>
+      <div class="form-group">
+        <label for="areaId">Approved By</label>
+        <select class="form-control" formControlName="approvedByPID"
+          (change)="validateSelectList(createExceptionForm.controls['approvedByPID'].value)">
+          <option value="">Approved by</option>
+          <option *ngFor="let tl of teamLeaders" [value]="tl.employeePid">TL- {{tl.fullName}}</option>
+        </select>
+        <small *ngIf="selectValurError && createExceptionForm.controls['approvedByPID'].touched" class="text-danger">
+          Approved by is required.
+        </small>
       </div>
-     
-    <button type="submit" class="btn btn-warning col-12" (click)="createEception()"[disabled]="!createExceptionForm.valid" >Create Exception</button>
-   
-    <h6 class="text-danger" id="res_massage">
-     {{responMassage}}
-    </h6>
-  </form>
-</div>
+
+      <div class="form-group">
+        <label for="exampleInputEmail1">Comment</label>
+        <textarea class="form-control" placeholder="Enter comment (Optional)"
+          formControlName="exceptionComment"></textarea>
+      </div>
+
+      <button type="submit" class="btn btn-warning col-12" (click)="createEception()"
+        [disabled]="!createExceptionForm.valid">Create Exception</button>
+
+      <h6 class="text-danger" id="res_massage">
+        {{responMassage}}
+      </h6>
+    </form>
+  </div>
 </div>

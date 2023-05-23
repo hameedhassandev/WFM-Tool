@@ -4,7 +4,7 @@
 }
 
 .hoursTable {
-  --size: 4.17;
+  --size: 3.92 ;
   table-layout: fixed;
   border-collapse: collapse;
   font-size: 0.8rem;
@@ -13,10 +13,11 @@
 
 .hoursTable th,
 .hoursTable td{
-  border: 1px solid #aaa;
+  border: 1px solid#cecdcd;
   position: relative;
   padding: 2rem 1;
   min-width: calc(var(--size) * 1em);
+  max-width: 100%;
 }
 
 
@@ -27,7 +28,7 @@
 
 
 .hoursTable .label2 {
-  border: 1px solid#969393;
+  border: 1px solid#b4b1b1;
   background: rgb(251, 250, 250);
   position: relative;
   text-align: center;
@@ -36,12 +37,14 @@
   cursor: pointer;
   left: calc(var(--from) * var(--size) * 1em);
   width: calc((var(--to) - var(--from)) * var(--size) * 1em);
+  max-width: 100%;
 }
 
 .hoursTable .Work{
   height: 0.5rem;
   background: rgb(3, 26, 153);
   border: none;
+  
 }
 .hoursTable .DayOff{
     height: 0.5rem;
@@ -74,9 +77,9 @@
 
   .hoursTable .braek2 {
     position: absolute;
-    border: 1px solid#969393;
+    border: 1px solid#cecdcd;
     background: rgb(255, 255, 255);
-    word-wrap: break-word;    
+    /* word-wrap: break-word;     */
     top: 0.65rem;
     height: 2.1rem;
     z-index: 1000;
@@ -84,6 +87,7 @@
     cursor: pointer;
     left: calc(var(--from) * var(--size) * 1em);
     width: calc((var(--to) - var(--from)) * var(--size) * 1em);
+    max-width: 100%;
   }
   
   .hoursTable .breakheader2{
@@ -93,7 +97,11 @@
   }
   #typOfDay{
     text-align: left;
-    font-size: 9px;
+    font-size: 11px;
+    margin-left: 2px;
+    margin-top: 2px;
+    color: #6e6d6d;
+    overflow: hidden;
   }
 #next-prev{
   float: right;
@@ -109,4 +117,9 @@
 #my-schedual{
   color: #ffff;
   margin-top: 5px;
+}
+
+
+.details{
+  width: 100%;
 }

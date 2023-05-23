@@ -17,6 +17,8 @@ namespace WFM_API.Models
         [Required]
         public string? CreatorPID { get; set; }
 
+        [Required]
+        public string? CreatorName { get; set; }
 
         [Required]
         public int EmpExceptionId { get; set; }

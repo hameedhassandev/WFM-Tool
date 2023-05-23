@@ -16,11 +16,14 @@ export class EmployeeScheduleComponent implements OnInit {
   value = "00:00"
   animal: string = "";
   name: string = "";
+  employeeId = "6403e590-a212-4b2a-9ada-b8f03b90b25f";
+  totalAppointment = 100;
   constructor(private _appointmentServ : EmployeeAppointmentService,public _dialog: MatDialog) {
     
   }
   ngOnInit(): void {
-    this.getAllApppontment('6403e590-a212-4b2a-9ada-b8f03b90b25f');
+  
+    this.getAllApppontment(this.employeeId,3,0);
   }
 
   getValue(event:any){
@@ -28,8 +31,9 @@ export class EmployeeScheduleComponent implements OnInit {
   }
 
  
-  getAllApppontment(employeeId:string){
-    this._appointmentServ.getAllEmployeeApointmentsPaging(employeeId,100,0).subscribe({
+  getAllApppontment(employeeId:string,take:number,skip:number){
+    this._appointmentServ.getAllEmployeeApointmentsPaging(employeeId,take ,skip).subscribe({
+      // this._appointmentServ.getAllEmployeeApointmentsPaging(employeeId,100,7).subscribe({
       next:(res)=>{
         this.allAppointment = res  
         console.log(this.allAppointment)
@@ -40,15 +44,27 @@ export class EmployeeScheduleComponent implements OnInit {
     })
   }
 
-  schedualDetails(){
-    // this._dialog.open(SchedualeDetailsComponent,{
-    //   width:'60%',
-    //   height:'50%',
+  nextWeek(){
+    this.getAllApppontment(this.employeeId,6,3);
+  }
+
+  prevWeek(){
+    this.getAllApppontment(this.employeeId,7,0);
+ 
+  }
+  schedualDetails(id:number){
+    this._dialog.open(SchedualeDetailsComponent,{
+       width:'70%',
+       height:'80%',
+      data: {
+        Id: id,
+        EmployeeId:this.employeeId
+      },
       
-    // }).afterClosed().subscribe(val => {
+    }).afterClosed().subscribe(val => {
         
-    // })
-    alert('Exception Details')
+    })
+  
   }
   
 

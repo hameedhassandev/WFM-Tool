@@ -32,5 +32,14 @@ namespace WFM_API.Controllers
             return Ok(results);
         }
 
+        [HttpGet("GetTypeOfDays")]
+        public async Task<IActionResult> GetTypeOfDays()
+        {
+            var allTypes = await _unitOfWork.TypeOfDays.GetAll();
+            if (allTypes == null) return BadRequest();
+
+            return Ok(allTypes);
+        }
+
     }
 }

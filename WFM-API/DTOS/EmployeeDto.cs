@@ -10,8 +10,7 @@ namespace WFM_API.DTOS
         public string? EmployeePid { get; set; }
         public string? FullName { get; set; }
         public string? UserName { get; set; }
- /*       public int? DepartmentId { get; set; }
-        public Department? Department { get; set; }*/
+        public int? DepartmentId { get; set; }
         public string? DepartmentName { get; set; }
 
 

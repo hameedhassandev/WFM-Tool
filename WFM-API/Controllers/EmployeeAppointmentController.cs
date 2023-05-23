@@ -33,6 +33,7 @@ namespace WFM_API.Controllers
             if(emp == null) return NotFound();
 
             emp = emp.OrderBy(e => e.AppointMentDate);
+            
 
             var results = _mapper.Map<IEnumerable<EmployeeAppointmentDto>>(emp);
 
@@ -40,6 +41,18 @@ namespace WFM_API.Controllers
            //return Ok(emp);
         }
 
+        [HttpGet("EmployeeAppointmentDetails")]
+        public async Task<IActionResult> EmployeeAppointmentDetails(string EmployeePID, int appointmentId)
+        {
+            var appointment = await _unitOfWork.EmployeeAppointments.FindAsSingleQuery(e => e.EmployeePID == EmployeePID && e.Id == appointmentId, new[] { "TypeOfDay", "Breaks", "Exceptions" });
+
+            if (appointment == null) return NotFound();
+
+
+            var results = _mapper.Map<EmployeeAppointmentDto>(appointment);
+
+            return Ok(results);
+        }
 
         [HttpGet("EmployeeAppointmentsPaging")]
         public async Task<IActionResult> EmployeeAppointmentsPaging(string EmployeePID,int take,int skip)
@@ -78,14 +91,19 @@ namespace WFM_API.Controllers
             var AppointmentId = appointment.Id;
             if(dto.Breaks != null)
             {
-                EmpBreak EpBreak = new()
+                foreach(var b in dto.Breaks)
                 {
-                    EmployeeAppointmentId = AppointmentId,
-                    From = dto.Breaks.From,
-                    To = dto.Breaks.To
-                };
-                await _unitOfWork.EmployeeBreaks.Add(EpBreak);
-                _unitOfWork.Complete();
+                    EmpBreak EpBreak = new()
+                    {
+                        EmployeeAppointmentId = AppointmentId,
+                        From = b.From,
+                        To = b.To
+                    };
+                    await _unitOfWork.EmployeeBreaks.Add(EpBreak);
+                    _unitOfWork.Complete();
+                }
+               
+               
             }
 
             return Ok(results);

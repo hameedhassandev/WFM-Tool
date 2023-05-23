@@ -1,0 +1,49 @@
+#appointment__color {
+    width: 40px;
+    height: 25px;
+    background-color: red;
+}
+
+.Work {
+    width: 40px;
+    height: 25px;
+    background: rgb(3, 26, 153);
+    border: none;
+}
+
+.break {
+    width: 40px;
+    height: 25px;
+    background: rgb(108, 110, 108);
+    border: none;
+}
+
+.DayOff {
+    width: 40px;
+    height: 25px;
+    background: rgb(11, 185, 34);
+    border: none;
+}
+
+.Task,
+.Sick,
+.NoShow {
+    width: 40px;
+    height: 25px;
+    background: rgb(211, 20, 3);
+    border: none;
+}
+
+.Annual {
+    width: 40px;
+    height: 25px;
+    background: rgb(119, 6, 225);
+    border: none;
+}
+
+.Vacation {
+    width: 40px;
+    height: 25px;
+    background: rgb(5, 149, 168);
+    border: none;
+}

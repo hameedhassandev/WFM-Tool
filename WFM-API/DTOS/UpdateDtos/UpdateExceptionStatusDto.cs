@@ -7,8 +7,9 @@ namespace WFM_API.DTOS.UpdateDtos
         [Required]
         public int ExceptionId { get; set; }
 
-        [Required]
         public string? CreatorPID { get; set; }
+        public string? CreatorName { get; set; }
+        
         public string? Comment { get; set; }
     }
 }

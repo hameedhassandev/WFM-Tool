@@ -14,7 +14,10 @@ namespace WFM_API.UnitOfWork
         IExceptionRepository Exceptions { get; }
         IBaseRepository<EmpBreak> EmployeeBreaks { get; }
         IBaseRepository<ExceptionType> ExceptionTypes { get; }
+        IBaseRepository<ExceptionStatus> ExceptionStatus { get; }
+        IBaseRepository<TypeOfDay> TypeOfDays { get; }
 
+ 
         int Complete();
     }
 }

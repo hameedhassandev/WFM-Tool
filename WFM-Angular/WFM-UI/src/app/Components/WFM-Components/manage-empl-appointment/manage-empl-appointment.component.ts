@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { EmployeeAppointmentService } from 'src/app/Services/employee-appointment.service';
 import { EmployeeService } from 'src/app/Services/employee.service';
 import { WFMService } from 'src/app/Services/wfm.service';
+import { AddAppointmentFormComponent } from '../add-appointment-form/add-appointment-form.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-manage-empl-appointment',
@@ -15,7 +17,7 @@ export class ManageEmplAppointmentComponent implements OnInit {
   employee:any
   noAppointment = false
   constructor(private _wfmService : WFMService,
-    private _appointmentServ : EmployeeAppointmentService, private _empService:EmployeeService) {
+    private _appointmentServ : EmployeeAppointmentService, private _empService:EmployeeService,public _dialog: MatDialog) {
   }
   ngOnInit(): void {
     this.getAllEmployeeWithDepartment()
@@ -65,10 +67,21 @@ getEmployeeData(empId:string){
     })}
 
 
-  addNewAppointment(employeePid:string){
-    alert('employeePid = ' + employeePid)
-  }
 
+
+    addNewAppointment(employeeId:string){
+      this._dialog.open(AddAppointmentFormComponent,{
+        height: '70%',
+        width: '40%',
+        position: {
+            left: '80vh'
+         },
+        //send employeeId
+      }).afterClosed().subscribe(val => {
+          
+      })
+    
+    }
 
 
 }

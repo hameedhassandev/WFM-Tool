@@ -36,7 +36,7 @@
         <input type="text" class="form-control mb-3 mr-sm-2" value="Role: {{employee.roles[0]}}" placeholder="Role" readonly>
      </div>
    
-    <button style="color: white;" class="btn btn-dark mb-3 mr-sm-2" (click)="addNewAppointment(employee.employeePid)">+ new appointment</button>
+    <button style="color: white;" class="btn btn-dark mb-3 mr-sm-2" (click)="addNewAppointment(employee.employeePID)">+ new appointment</button>
       </form>
     </div>
      <!-- show employee data end  -->
@@ -82,16 +82,17 @@
             <td>{{a.appointMentDate | date: "dd-MM-yyyy"}}</td>
             <td colspan="24">
               <div [class]="a.typeOfDay['typeName']"style="--from:{{a.from | slice:0:2}}; --to:{{a.to ==='00:00:00' ? '24:00:00' : a.to | slice:0:2}}">
-                <p style="color: white;float: left;font-size: 10px;">{{a.typeOfDay['typeName']}}</p>
+                <p id="typOfDay">{{a.typeOfDay['typeName']}}</p>
               </div>
               <div class="braek"  *ngFor="let b of a.breaks"  style="--from:{{b.from | slice:0:2}}.{{b.from | slice:3:4}}; --to:{{b.to | slice:0:2}}.{{b.to | slice:3:4}}">
+                <p id="typOfDay">Break</p>
               </div>
 
               <div class="exception" *ngFor="let ex of a.exceptions" style="--from:{{ex.from | slice:0:2}}.{{ex.from | slice:3:4}}; --to:{{ex.to | slice:0:2}}.{{ex.to | slice:3:4}}">
+                <p id="typOfDay">Exception</p>
               </div>
             </td>
           </tr>
-
         </tbody>
 
       </table>

@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { Excption } from '../Interfaces/Excption';
 import { Observable } from 'rxjs';
 import { ExceptionType } from '../Interfaces/ExceptionType';
+import { ExceptionStatus } from '../Interfaces/ExceptionStatus';
 
 @Injectable({
   providedIn: 'root'
@@ -36,6 +37,13 @@ export class EmployeeExceptionsService {
     return this._http.get<ExceptionType[]>(`${this.exceptions}/GetExceptonTypes`);
 
   }
+
+
+  getAllExceptionStatus():Observable<ExceptionStatus[]>{
+    return this._http.get<ExceptionStatus[]>(`${this.exceptions}/GetExceptionStatus`);
+
+  }
+
   getAllExceptionByExcId(exceptionId:number, empPID:string):Observable<ExceptionType>{
     return this._http.get<ExceptionType>(`${this.exceptions}/GetExcepton?exceptionId=${exceptionId}&empPID=${empPID}`);
 

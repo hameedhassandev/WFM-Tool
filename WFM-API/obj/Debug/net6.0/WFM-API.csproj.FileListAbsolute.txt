@@ -5,6 +5,8 @@ D:\csharpcode\WFM-API\WFM-API\bin\Debug\net6.0\WFM-API.deps.json
 D:\csharpcode\WFM-API\WFM-API\bin\Debug\net6.0\WFM-API.runtimeconfig.json
 D:\csharpcode\WFM-API\WFM-API\bin\Debug\net6.0\WFM-API.dll
 D:\csharpcode\WFM-API\WFM-API\bin\Debug\net6.0\WFM-API.pdb
+D:\csharpcode\WFM-API\WFM-API\bin\Debug\net6.0\AutoMapper.dll
+D:\csharpcode\WFM-API\WFM-API\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
 D:\csharpcode\WFM-API\WFM-API\bin\Debug\net6.0\Humanizer.dll
 D:\csharpcode\WFM-API\WFM-API\bin\Debug\net6.0\Microsoft.AspNetCore.Cryptography.Internal.dll
 D:\csharpcode\WFM-API\WFM-API\bin\Debug\net6.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
@@ -63,5 +65,3 @@ D:\csharpcode\WFM-API\WFM-API\obj\Debug\net6.0\refint\WFM-API.dll
 D:\csharpcode\WFM-API\WFM-API\obj\Debug\net6.0\WFM-API.pdb
 D:\csharpcode\WFM-API\WFM-API\obj\Debug\net6.0\WFM-API.genruntimeconfig.cache
 D:\csharpcode\WFM-API\WFM-API\obj\Debug\net6.0\ref\WFM-API.dll
-D:\csharpcode\WFM-API\WFM-API\bin\Debug\net6.0\AutoMapper.dll
-D:\csharpcode\WFM-API\WFM-API\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll

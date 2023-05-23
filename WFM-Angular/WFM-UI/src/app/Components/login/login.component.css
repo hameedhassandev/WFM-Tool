@@ -12,6 +12,7 @@
 .login-main-form{
     border: 1px solid#ddd;    
     box-shadow: 0 0 8px 1px rgba(54, 53, 53, 0.4);
+    height: 80vh;
 }
 .input-login{
     height: 50px;

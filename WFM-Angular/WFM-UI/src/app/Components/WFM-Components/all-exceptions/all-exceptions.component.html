@@ -6,30 +6,25 @@
         </div>
         <div class="form-group">
             <select  class="form-control mb-3 mr-sm-2">
-              <option value="">Select Department</option>
-              <option value="">Select Department</option>
-              <option value="">Select Department</option>
+              <option value="">Select Exception Type</option>
+              <option *ngFor="let type of exceptionsTypes"[value]="type.id">{{type.exceptionName}}</option>
             </select>
         </div>
 
         <div class="form-group">
             <select  class="form-control mb-3 mr-sm-2">
               <option value="">Exception Status</option>
-              <option value="">Waiting for wfm</option>
-              <option value="">Approved</option>
-              <option value="">Rejected</option>
-              <option value="">Dispute</option>
+              <option *ngFor="let status of exceptionStatus" [value]="status.id">{{status.status}}</option>
             </select>
         </div>
         <button type="submit" class="btn btn-warning mb-3 mr-sm-2"  >Filter</button>
-        <a class="btn btn-info mb-3"  >Clear Filter</a>
+        <button class="btn btn-dark mb-3"  >Clear Filter</button>
     </form>
 <table class="table table-bordered table-striped">
     <thead class="thead-dark">
       <tr>
         <th scope="col">ExcId#</th>
         <th scope="col">Creator</th>
-        <th scope="col">Dep.</th>
         <th scope="col">Date</th>
         <th scope="col">From</th>
         <th scope="col">To</th>
@@ -43,14 +38,13 @@
       <tr *ngFor="let ex of allEmpExceptions">
         <th scope="row">{{ex.id}}</th>
         <td>{{ex.user['fullName']}}</td>
-        <td>Customer Care</td>
-        <td>{{ex.exceptionDate}}</td>
+        <td>{{ex.exceptionDate | date: 'dd-MM-yyyy'}}</td>
         <td>{{ex.from}}</td>
         <td>{{ex.to}}</td>
         <td>{{ex.exceptionType['exceptionName']}}</td>
         <td>{{ex.manager['fullName']}}</td>
         <td>{{ex.exceptionStatus['status']}}</td>
-      <td><a href="#">Action</a></td>
+        <td><button class="btn btn-dark btn-sm" [routerLink]="['/wfm/exception-action', ex.user['employeePid'], ex.id]">Action</button></td>
       </tr>
     
     </tbody>

@@ -1,7 +1,7 @@
 
 <ul class="nav-page">
-  <li id="next-prev"><a  class="btn btn-light mr-sm-2">&#8250;</a></li>
-  <li id="next-prev"><a class="btn btn-light  mr-sm-2">&#8249;</a></li>
+  <li id="next-prev"><a class="btn btn-light mr-sm-2" (click)="nextWeek()">&#8250;</a></li>
+  <li id="next-prev"><a class="btn btn-light  mr-sm-2" (click)="prevWeek()">&#8249;</a></li>
   <li id="my-schedual"><a>My Schedual</a></li>
 
 </ul>
@@ -10,7 +10,8 @@
     <table class="hoursTable table-striped">
         <thead>
           <tr class="hours">
-            <th>Date</th>
+            <th></th>
+            <th style="text-align: center;">Date</th>
             <th>12 AM</th>
             <th> 1 AM</th>
             <th> 2 AM</th>
@@ -39,9 +40,14 @@
         </thead>
         <tbody>
           <tr *ngFor="let emp of allAppointment">
-            <th>{{emp.appointMentDate | date}}</th>
+            <td>
+              <div class="form-check" style="text-align: center;margin-bottom: 1rem;">
+                <input class="form-check-input" type="checkbox" value="" >
+              </div>
+            </td>
+            <th style="padding: 1rem;color: #6e6d6d;font-size: 12px;">{{emp.appointMentDate | date}}</th>
             <td colspan=24>
-              <div class="label2" style="--from:{{emp.from | slice:0:2}}; --to:{{emp.to ==='00:00:00' ? '24:00:00' : emp.to | slice:0:2}}" (click)="schedualDetails()">
+              <div class="label2" style="--from:{{emp.from | slice:0:2}}; --to:{{emp.to ==='00:00:00' ? '24:00:00' : emp.to | slice:0:2}}" (click)="schedualDetails(emp.id)">
           
                 <div [class]="emp.typeOfDay['typeName']">
                  
@@ -51,13 +57,13 @@
               <div *ngFor="let b of emp.breaks" class="braek2" style="--from:{{b.from | slice:0:2}}.{{b.from | slice:3:4}}; --to:{{b.to | slice:0:2}}.{{b.to | slice:3:4}}">
                 <div class="breakheader2">     
                 </div>
-                <p id="typOfDay">Brk</p>
+                <p id="typOfDay">Break</p>
             </div>
             <div  *ngFor="let ex of emp.exceptions"  class="braek2" style="--from:{{ex.from | slice:0:2}}.{{ex.from | slice:3:4}}; --to:{{ex.to | slice:0:2}}.{{ex.to | slice:3:4}}">
               <!-- ex.exceptionStatusId === 1 -->
               <div class="Task">     
               </div>
-              <p id="typOfDay">Exp</p>
+              <p id="typOfDay">Exception</p>
             </div>
             </td>
           </tr>

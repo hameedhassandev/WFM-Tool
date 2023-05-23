@@ -100,7 +100,11 @@ namespace WFM_API.Services
 
         }
 
-
+        //TODO
+        /*public Task<T> Count()
+        {
+            return await _context.Set<T>().Count();
+        }*/
 
     }
 }

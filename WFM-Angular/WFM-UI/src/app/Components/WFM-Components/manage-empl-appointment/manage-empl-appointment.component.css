@@ -17,10 +17,6 @@
 }
 
 
-/* .main-page{
-  border: 2px solid #ddd;
- 
-} */
 
 .manage-employee{
   width: 100%;
@@ -32,7 +28,7 @@
 }
 
 .hoursTable{
-  --size: 3.7;
+  --size: 3.69;
   table-layout: fixed;
   border-collapse: collapse;
   font-size: 11px;
@@ -62,17 +58,25 @@
 .hoursTable .Vacation,
 .hoursTable .braek {
   position: absolute;
-  word-wrap: break-word;    
   padding: 0.3rem;
+  overflow: hidden;
   top: 0.75rem;
   height: 1.5rem;
-  z-index: 9999;
+  z-index: 200;
   text-align: center;
   cursor: pointer;
   left: calc(var(--from) * var(--size) * 1em);
   width: calc((var(--to) - var(--from)) * var(--size) * 1em);
+  max-width: 100%;
 }
 
+
+#typOfDay{
+
+  color: white;
+  float: left;
+  font-size: 10px;
+}
 
 .hoursTable .exception,
 .hoursTable .Task,
@@ -100,4 +104,9 @@
 
 .hoursTable .Vacation  {
   background: rgb(5, 149, 168);
+}
+
+.dialog-class .mat-dialog-container{
+  z-index: 19000;
+  
 }

@@ -15,7 +15,9 @@ namespace WFM_API.Services
         public IBaseRepository<EmpBreak> EmployeeBreaks { get; private set; }
         public IBaseRepository<ExceptionComment> ExceptionComments { get; private set; }
         public IBaseRepository<ExceptionType> ExceptionTypes { get; private set; }
-        
+        public IBaseRepository<ExceptionStatus> ExceptionStatus { get; private set; }
+        public IBaseRepository<TypeOfDay> TypeOfDays { get; private set; }
+
 
 
 
@@ -28,8 +30,12 @@ namespace WFM_API.Services
             EmployeeAppointments = new EmployeeAppoinRepository(_context);
             EmployeeBreaks = new BaseRepository<EmpBreak>(_context);
             ExceptionComments = new BaseRepository<ExceptionComment>(_context);
-            ExceptionTypes = new BaseRepository<ExceptionType>(_context);   
+            ExceptionTypes = new BaseRepository<ExceptionType>(_context);
+            ExceptionStatus = new BaseRepository<ExceptionStatus>(_context);
+            TypeOfDays = new BaseRepository<TypeOfDay>(_context);
         }
+
+
 
         public int Complete()
         {

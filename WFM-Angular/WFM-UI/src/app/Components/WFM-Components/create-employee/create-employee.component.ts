@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { DepartmentService } from 'src/app/Services/department.service';
 import { EmployeeService } from 'src/app/Services/employee.service';
+import { AddAppointmentFormComponent } from '../add-appointment-form/add-appointment-form.component';
 
 @Component({
   selector: 'app-create-employee',
@@ -15,7 +17,7 @@ selectValurError = false
  roles:any
  responseMsg:any
   constructor(private _departmentService:DepartmentService,
-     private _empService:EmployeeService, private _fb:FormBuilder) {
+     private _empService:EmployeeService, private _fb:FormBuilder,public _dialog: MatDialog) {
     
   }
   ngOnInit(): void {
@@ -87,6 +89,8 @@ selectValurError = false
             console.log(err);}
        });
     }}
+
+
 
     
 }

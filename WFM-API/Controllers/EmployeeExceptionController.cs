@@ -2,11 +2,13 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Xml.Linq;
 using WFM_API.DTOS;
 using WFM_API.DTOS.CreateDtos;
 using WFM_API.DTOS.UpdateDtos;
 using WFM_API.Helpers;
 using WFM_API.Models;
+using WFM_API.Services;
 using WFM_API.UnitOfWork;
 
 namespace WFM_API.Controllers
@@ -29,7 +31,7 @@ namespace WFM_API.Controllers
         {
 
             var appointmentId = await _unitOfWork.Exceptions.getAppointmentId(dto.CreatorPID, dto.ExceptionDate);
-            if (appointmentId is -1) return BadRequest("Invalid Appointment");
+            if (appointmentId is -1) return BadRequest("Invalid Shift Date");
                 var excIsValid = await _unitOfWork.Exceptions.isExceptionDuringDay(dto.ExceptionDate, dto.CreatorPID, dto.From, dto.To);
             if (!excIsValid) return BadRequest("Invalid Exception Time");
 
@@ -56,6 +58,7 @@ namespace WFM_API.Controllers
             var exceptionId = empExc.Id;
 
 
+
             if (!String.IsNullOrEmpty(dto.ExceptionComment))
             {
                 ExceptionComment excComment = new() 
@@ -63,6 +66,7 @@ namespace WFM_API.Controllers
                     Comment = dto.ExceptionComment,
                     CreatorPID = dto.CreatorPID,
                     EmpExceptionId = exceptionId,
+                    CreatorName = dto.CreatorName
                 };
                 await _unitOfWork.ExceptionComments.Add(excComment);
                 _unitOfWork.Complete();
@@ -72,11 +76,14 @@ namespace WFM_API.Controllers
         }
 
         [HttpPut("ApproveExceptionByTeamLeader")]
-        public async Task<IActionResult> ApproveExceptionByTeamLeader([FromForm] int ExceptionId)
+        public async Task<IActionResult> ApproveExceptionByTeamLeader([FromForm] UpdateExceptionStatusDto dto)
         {
-            var except = await _unitOfWork.Exceptions.GetById(ExceptionId);
+            var except = await _unitOfWork.Exceptions.GetById(dto.ExceptionId);
 
             if (except == null) return NotFound();
+
+            if(!String.IsNullOrEmpty(dto.Comment)) AddComment(dto);
+    
 
             except.ExceptionStatusId = (int)ExceptionStatusVal.WaitingForWfm;
             _unitOfWork.Exceptions.Update(except);
@@ -85,11 +92,13 @@ namespace WFM_API.Controllers
         }
 
         [HttpPut("ApproveExceptionByWFM")]
-        public async Task<IActionResult> ApproveExceptionByWFM([FromForm] int ExceptionId)
+        public async Task<IActionResult> ApproveExceptionByWFM([FromForm] UpdateExceptionStatusDto dto)
         {
-            var except = await _unitOfWork.Exceptions.GetById(ExceptionId);
+            var except = await _unitOfWork.Exceptions.GetById(dto.ExceptionId);
 
             if (except == null) return NotFound();
+
+            if (!String.IsNullOrEmpty(dto.Comment)) AddComment(dto);
 
             except.ExceptionStatusId = (int)ExceptionStatusVal.Approved;
             _unitOfWork.Exceptions.Update(except);
@@ -104,17 +113,7 @@ namespace WFM_API.Controllers
 
             if (except == null) return NotFound();
 
-            if (!String.IsNullOrEmpty(dto.Comment))
-            {
-                ExceptionComment excComment = new()
-                {
-                    Comment = dto.Comment,
-                    CreatorPID = dto.CreatorPID,
-                    EmpExceptionId = dto.ExceptionId,
-                };
-                await _unitOfWork.ExceptionComments.Add(excComment);
-                _unitOfWork.Complete();
-            }
+            if (!String.IsNullOrEmpty(dto.Comment)) AddComment(dto);
 
             except.ExceptionStatusId = (int)ExceptionStatusVal.Rejected;
             _unitOfWork.Exceptions.Update(except);
@@ -135,17 +134,7 @@ namespace WFM_API.Controllers
             if (except.ExceptionStatusId == (int)ExceptionStatusVal.CanceledByCreator)
                 return BadRequest("Cannot Dispute Exception that canceled by you");
 
-            if (!String.IsNullOrEmpty(dto.Comment))
-            {
-                ExceptionComment excComment = new()
-                {
-                    Comment = dto.Comment,
-                    CreatorPID = dto.CreatorPID,
-                    EmpExceptionId = dto.ExceptionId,
-                };
-                await _unitOfWork.ExceptionComments.Add(excComment);
-                _unitOfWork.Complete();
-            }
+            if (!String.IsNullOrEmpty(dto.Comment)) AddComment(dto);
 
             except.ExceptionStatusId = (int)ExceptionStatusVal.Dispute;
             _unitOfWork.Exceptions.Update(except);
@@ -162,17 +151,7 @@ namespace WFM_API.Controllers
 
             if (except == null) return NotFound("No Exception Found!");
 
-            if (!String.IsNullOrEmpty(dto.Comment))
-            {
-                ExceptionComment excComment = new()
-                {
-                    Comment = dto.Comment,
-                    CreatorPID = dto.CreatorPID,
-                    EmpExceptionId = dto.ExceptionId,
-                };
-                await _unitOfWork.ExceptionComments.Add(excComment);
-                _unitOfWork.Complete();
-            }
+            if (!String.IsNullOrEmpty(dto.Comment)) AddComment(dto);
 
             except.ExceptionStatusId = (int)ExceptionStatusVal.CanceledByCreator;
             _unitOfWork.Exceptions.Update(except);
@@ -192,6 +171,24 @@ namespace WFM_API.Controllers
             return Ok(results);
         }
 
+        [HttpGet("GetAllEmployeeExceptionsWithSpec")]
+        public async Task<IActionResult> GetAllEmployeeExceptionsWithSpec([FromQuery]WfmExceptionParams ExpParams)
+        {
+
+
+            var allEmpExceptions = await _unitOfWork.Exceptions.FindWithIncludes(new[] { "ExceptionStatus", "ExceptionComments", "ExceptionType", "Manager", "User" });
+
+        
+            if (ExpParams.Date != null) allEmpExceptions = allEmpExceptions.Where(d => d.ExceptionDate.CompareTo(ExpParams.Date) == 0);
+            if (ExpParams.StatusId != 0) allEmpExceptions = allEmpExceptions.Where(d => d.ExceptionStatusId == ExpParams.StatusId);
+            if (ExpParams.exceptionTypeId != 0) allEmpExceptions = allEmpExceptions.Where(d => d.ExceptionTypeId == ExpParams.exceptionTypeId);
+
+
+
+            var results = _mapper.Map<IEnumerable<EmployeeExceptionDto>>(allEmpExceptions);
+
+            return Ok(results);
+        }
 
         [HttpGet("GetAllEmpExceptoins")]
         public async Task<IActionResult> GetAllEmpExceptoins(string employeePID)
@@ -231,7 +228,7 @@ namespace WFM_API.Controllers
         [HttpGet("GetExcepton")]
         public async Task<IActionResult> GetExcepton(int exceptionId,string empPID)
         {
-            var exception = await _unitOfWork.Exceptions.FindAsSingleQuery(e => e.Id == exceptionId && e.CreatorPID == empPID, new[] { "ExceptionStatus", "ExceptionComments", "ExceptionType", "Manager" });
+            var exception = await _unitOfWork.Exceptions.FindAsSingleQuery(e => e.Id == exceptionId && e.CreatorPID == empPID, new[] { "ExceptionStatus", "ExceptionComments", "ExceptionType", "Manager" ,"User"});
 
             if (exception == null) return NotFound();
 
@@ -251,5 +248,30 @@ namespace WFM_API.Controllers
             return Ok(results);
         }
 
-    }
+
+        [HttpGet("GetExceptionStatus")]
+        public async Task<IActionResult> GetExceptionStatus()
+        {
+            var allStatus = await _unitOfWork.ExceptionStatus.GetAll();
+            if (allStatus == null) return NotFound();
+            return Ok(allStatus);
+        }
+
+
+        private async void AddComment(UpdateExceptionStatusDto dto)
+        {
+                ExceptionComment excComment = new()
+                {
+                    Comment = dto.Comment,
+                    CreatorPID = dto.CreatorPID,
+                    EmpExceptionId = dto.ExceptionId,
+                    CreatorName =  dto.CreatorName,
+                };
+                await _unitOfWork.ExceptionComments.Add(excComment);
+                _unitOfWork.Complete();
+        }
+
+           
+      
+}
 }

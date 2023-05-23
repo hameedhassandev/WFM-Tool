@@ -14,6 +14,7 @@ export class FindOrdisputeExceptionComponent implements OnInit {
   changeExcForm!:FormGroup
   exceptionId:any
   empId:any
+  creatorName:any
   comment:any
   constructor(private _excepService: EmployeeExceptionsService, private _fb:FormBuilder) {
     
@@ -40,14 +41,17 @@ export class FindOrdisputeExceptionComponent implements OnInit {
   changeExc(){
 
     this.empId = "6403e590-a212-4b2a-9ada-b8f03b90b25f";   
+    this.creatorName = "Ahmed Kamel Mohamed";
     var fData = new FormData();
     fData.append('ExceptionId',this.findForm.get('exceptionTypeId')?.value);
     fData.append('Comment', this.changeExcForm.get('comment')?.value);
     fData.append('CreatorPID', this.empId);
+    fData.append('CreatorName', this.creatorName);
 
     const data = {
       excepId : this.findForm.get('exceptionTypeId')?.value,
       creatorId: this.empId ,
+      creatorName: this.creatorName ,
       comment:this.changeExcForm.get('comment')?.value
     }
     console.log(data)

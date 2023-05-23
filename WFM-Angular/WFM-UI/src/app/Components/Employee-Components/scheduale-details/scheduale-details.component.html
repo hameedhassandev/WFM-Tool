@@ -1,11 +1,46 @@
 <div class="container">
-    <h1 mat-dialog-title>Title</h1>
-    <div mat-dialog-content>
-       <h2>Work 9/3/2023</h2>
-       <h3>From: 8:00 AM</h3>
-       <h3>To: 4:00 PM</h3>
+  <div mat-dialog-content>
+     <h1>Schedual Details</h1>
+     <div class="row">
+      <div class="col-3">
+        <h4>Agent: Hameed Hassan Mohamed</h4>
+      </div>
+      <div class="col-9">
+        
+          <td colspan="12"><h2>Shift Date - {{appointment.appointMentDate |date}}</h2></td>
+        
+          <table class="table">
+            <thead>
+              <th>Time</th>
+              <th>Type</th>
+              <th>Item</th>
+            </thead>
+            <tbody>
+              <tr>
+                  <td>{{appointment.from  ==='00:00:00' ? '12:00' : appointment.from| slice:0:5}} - {{appointment.to  ==='00:00:00' ? '12:00' :  appointment.to | slice:0:5}}</td>
+                  <td ><div class="{{appointment.typeOfDay['typeName']}}"></div></td>
+                  <td >{{appointment.typeOfDay['typeName']}}</td>
+              </tr>
+                <tr *ngFor="let b of appointment.breaks;let i = index">
+                  <td>{{b.from | slice:0:5}} - {{b.to | slice:0:5}}</td>
+                  <td ><div class="break"></div></td>
+                  <td >Break{{i+1}}</td>
+               </tr>
+               <tr *ngFor="let ex of appointment.exceptions;let i = index">
+                <td>{{ex.from | slice:0:5}} - {{ex.to | slice:0:5}}</td>
+                <td ><div class="Task"></div></td>
+                <td >Exception{{i+1}}</td>
+              </tr>
+             
+            </tbody>
+          </table>
+      </div>
+     </div>
+  </div>
+  <!-- TODO:make close button from top lef X -->
+  <div mat-dialog-action [align]="'end'">
+    <button mat-raised-button mat-button color="warn" mat-dialog-close style="margin-top: 10px; margin-right: 5px;" >Close</button>
     </div>
-    <div mat-dialog-action [align]="'end'">
-      <button mat-raised-button mat-button color="warn" mat-dialog-close>Close</button>    
-    </div>
-</div>
+
+  </div>
+
